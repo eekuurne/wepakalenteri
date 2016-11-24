@@ -11,6 +11,7 @@ git clone https://github.com/eekuurne/wepakalenteri.git
 
 git checkout -b branchin-nimi
 
+git branch --set-upstream-to=origin/master branchin-nimi
 
 ## Commit changes:
 
@@ -20,6 +21,8 @@ git commit -m "Tähän commitin kuvaus"
 
 
 ## Push to repository:
+
+git pull
 
 git push --set-upstream origin branchin-nimi
 
