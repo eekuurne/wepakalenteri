@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class DefaultController {
 
+    
     @ResponseBody
-    @RequestMapping("*")
+    @RequestMapping("/hello")
     public String handleDefault() {
         return "Hello World!";
     }
