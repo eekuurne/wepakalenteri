@@ -1,5 +1,5 @@
 
-package wepa.domain;
+package server.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
