@@ -8,28 +8,28 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class CalendarApplicationTest {
-    
+
     public CalendarApplicationTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
-     @Test
-     public void fail() {
-         assertTrue(false);
-     }
+//    @Test
+//    public void fail() {
+//        assertTrue(false);
+//    }
 }
