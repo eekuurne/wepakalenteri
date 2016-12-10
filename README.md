@@ -1,5 +1,7 @@
 # wepakalenteri
 
+[![Build Status](https://travis-ci.org/Sxvz/wepakalenteri.svg?branch=master)](https://travis-ci.org/Sxvz/wepakalenteri)
+
 ## Getting started:
 
 Navigate to the folder where you want the repository to appear with command line.
