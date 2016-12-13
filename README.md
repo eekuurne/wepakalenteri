@@ -1,6 +1,6 @@
 # wepakalenteri
 
-[![Build Status](https://travis-ci.org/Sxvz/wepakalenteri.svg?branch=master)](https://travis-ci.org/Sxvz/wepakalenteri)
+[![Build Status](https://travis-ci.org/eekuurne/wepakalenteri.svg?branch=master)](https://travis-ci.org/eekuurne/wepakalenteri)
 
 ## Getting started:
 
