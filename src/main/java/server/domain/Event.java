@@ -8,6 +8,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Event extends AbstractPersistable<Long> {
@@ -20,9 +21,11 @@ public class Event extends AbstractPersistable<Long> {
     private String title;
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date startTime;
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date endTime;
     @NotNull
     @Length(min = 4, max = 40)
