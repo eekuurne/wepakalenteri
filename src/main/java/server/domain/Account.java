@@ -3,7 +3,6 @@ package server.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -18,6 +17,8 @@ public class Account extends AbstractPersistable<Long> {
     @NotNull
     @Length(min = 6, max = 255)
     private String password;
+    @NotNull
+    private String role;
 
     public String getUsername() {
         return username;
@@ -33,6 +34,14 @@ public class Account extends AbstractPersistable<Long> {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
     
     
