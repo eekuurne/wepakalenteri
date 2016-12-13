@@ -1,5 +1,5 @@
 
-package wepa.domain;
+package server.domain;
 
 import java.util.Date;
 import javax.persistence.Entity;

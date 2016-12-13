@@ -1,8 +1,8 @@
 
-package wepa.repository;
+package server.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import wepa.domain.Comment;
+import server.domain.Comment;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 

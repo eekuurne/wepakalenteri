@@ -1,5 +1,5 @@
 
-package wepa.domain;
+package server.domain;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;

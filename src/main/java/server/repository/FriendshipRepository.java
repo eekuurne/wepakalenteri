@@ -1,8 +1,8 @@
 
-package wepa.repository;
+package server.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import wepa.domain.Friendship;
+import server.domain.Friendship;
 
 public interface FriendshipRepository extends JpaRepository<Friendship, Long> {
 
