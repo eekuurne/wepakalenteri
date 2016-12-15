@@ -49,13 +49,6 @@ body {
               0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-.wad-navigation-bar .brand-wrapper {
-}
-
-.wad-navigation-bar .action-wrapper {
-
-}
-
 .wad-navigation-bar .action-wrapper .actions {
   display: block;
   margin: auto;
@@ -69,7 +62,7 @@ body {
   float: right;
 }
 
-a {
+.wad-navigation-bar a {
   color: white;
 }
 
