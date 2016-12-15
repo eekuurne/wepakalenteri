@@ -1,0 +1,21 @@
+<div class="wad-view-wrapper">
+  <div class="wad-calendar">
+    <div ng-repeat="week in weeks">
+      <div class="week-wrapper">
+        <div class="calendar-day" ng-repeat="day in week.days">
+          <div class="calendar-day-header">
+            {{day.date}}
+          </div>
+          <div class="calendar-day-content">
+            <div ng-repeat="event in day.events">
+              {{event.time}} {{event.title}}
+            </div>
+          </div>
+          <div class="calendar-day-footer">
+            <span class="glyphicon glyphicon-plus"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
