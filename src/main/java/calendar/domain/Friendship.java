@@ -2,7 +2,8 @@
 package calendar.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -10,10 +11,12 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Friendship extends AbstractPersistable<Long> {
     
     @NotNull
-    @OneToOne
+    @ManyToOne
+    @JoinColumn
     private Account account1;
     @NotNull
-    @OneToOne
+    @ManyToOne
+    @JoinColumn
     private Account account2;
     @NotNull
     private boolean accepted;
