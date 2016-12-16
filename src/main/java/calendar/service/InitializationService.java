@@ -19,7 +19,7 @@ import calendar.repository.ParticipationRepository;
 @Service
 public class InitializationService {
 
-    private final Long dayInMillis;
+    public static final Long dayInMillis = new Long (1000 * 60 * 60 * 24);
     
     @Autowired
     private AccountRepository accountRepo;
@@ -33,10 +33,6 @@ public class InitializationService {
     private CommentRepository commentRepo;
     @Autowired
     private FriendshipRepository friendRepo;
-
-    public InitializationService() {
-        this.dayInMillis = new Long (1000 * 60 * 60 * 24);
-    }
 
     @PostConstruct
     public void initialize() {
@@ -52,6 +48,12 @@ public class InitializationService {
         a2.setPassword(encoder.encode("Password"));
         a2.setRole("USER");
         accountRepo.save(a2);
+        
+        Account a3 = new Account();
+        a3.setUsername("User3");
+        a3.setPassword(encoder.encode("Password"));
+        a3.setRole("USER");
+        accountRepo.save(a3);
         
         //Events
         Event e1 = new Event();
@@ -72,6 +74,15 @@ public class InitializationService {
         e2.setEndTime(new Date(System.currentTimeMillis() + dayInMillis * 10));
         eventRepo.save(e2);
         
+        Event e3 = new Event();
+        e3.setOwner(a3);
+        e3.setTitle("Event3");
+        e3.setDescription("Description3");
+        e3.setPlace("Elsewhere?");
+        e3.setStartTime(new Date(System.currentTimeMillis() + dayInMillis * 1));
+        e3.setEndTime(new Date(System.currentTimeMillis() + dayInMillis * 2));
+        eventRepo.save(e3);
+        
         //Participation
         Participation p1 = new Participation();
         p1.setAccount(a2);
@@ -84,6 +95,12 @@ public class InitializationService {
         p2.setEvent(e2);
         p2.setAccepted(true);
         participationRepo.save(p2);
+        
+        Participation p3 = new Participation();
+        p3.setAccount(a1);
+        p3.setEvent(e3);
+        p3.setAccepted(true);
+        participationRepo.save(p3);
 
         //Comment
         Comment c1 = new Comment();
@@ -100,6 +117,12 @@ public class InitializationService {
         f1.setAccount2(a2);
         f1.setAccepted(true);
         friendRepo.save(f1);
+        
+        Friendship f2 = new Friendship();
+        f2.setAccount1(a3);
+        f2.setAccount2(a2);
+        f2.setAccepted(true);
+        friendRepo.save(f2);
         
     }
 }

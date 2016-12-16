@@ -11,7 +11,19 @@ import calendar.domain.Event;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
     
-//    @Query("SELECT ")
-//    public List<Event> findByParticipationAndDateBetweenXAndY(@Param("user") Account user, @Param("start") Date start, @Param("end") Date end);
+    @Query("SELECT e"
+            + " FROM Event e"
+            + " WHERE e.owner = :user"
+            + " AND (e.startTime BETWEEN :start AND :end"
+            + " OR e.endTime BETWEEN :start AND :end)")
+    public List<Event> findByOwnerAndDateBetweenXAndY(@Param("user") Account user, @Param("start") Date start, @Param("end") Date end);
+    
+    @Query("SELECT e"
+            + " FROM Participation p"
+            + " INNER JOIN p.event e"
+            + " WHERE (e.startTime BETWEEN :start AND :end"
+            + " OR e.endTime BETWEEN :start AND :end)"
+            + " AND p.account = :user")
+    public List<Event> findByParticipationAndDateBetweenXAndY(@Param("user") Account user, @Param("start") Date start, @Param("end") Date end);
 
 }
