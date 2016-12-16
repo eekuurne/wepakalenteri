@@ -2,8 +2,8 @@
 package server.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import server.domain.Participant;
+import server.domain.Participation;
 
-public interface ParticipantRepository extends JpaRepository<Participant, Long> {
+public interface ParticipationRepository extends JpaRepository<Participation, Long> {
 
 }

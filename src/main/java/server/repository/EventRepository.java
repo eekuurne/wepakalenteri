@@ -11,7 +11,7 @@ import server.domain.Event;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
     
-    //@Query("SELECT e From Event e WHERE ")
-    //public List<Event> findByParticipationAndDateBetweenXAndY(@Param("user") Account user, @Param("start") Date start, @Param("end") Date end);
+//    @Query("SELECT e From Event e WHERE ")
+//    public List<Event> findByParticipationAndDateBetweenXAndY(@Param("user") Account user, @Param("start") Date start, @Param("end") Date end);
 
 }

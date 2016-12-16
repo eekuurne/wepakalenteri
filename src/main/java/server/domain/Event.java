@@ -15,7 +15,7 @@ public class Event extends AbstractPersistable<Long> {
     
     @NotNull
     private Account owner;
-    //private List<Account> participants;
+//    private List<Participation> participants;
     @NotNull
     @Length(min = 2, max = 40)
     private String title;
@@ -80,6 +80,5 @@ public class Event extends AbstractPersistable<Long> {
     public void setDescription(String Description) {
         this.Description = Description;
     }
-    
     
 }
