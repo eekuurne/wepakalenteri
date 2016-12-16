@@ -24,8 +24,8 @@ public class Account extends AbstractPersistable<Long> {
     private String role;
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     private List<Event> events;
-    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
-    private List<Participation> participating;
+//    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+//    private List<Participation> participating;
 //    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
 //    private List<Friendship> friendships;
 //    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
@@ -62,14 +62,5 @@ public class Account extends AbstractPersistable<Long> {
     public void setEvents(List<Event> events) {
         this.events = events;
     }
-
-    public List<Participation> getParticipating() {
-        return participating;
-    }
-
-    public void setParticipating(List<Participation> participating) {
-        this.participating = participating;
-    }
-    
     
 }
