@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
-public class Participant extends AbstractPersistable<Long> {
+public class Participation extends AbstractPersistable<Long> {
 
     @NotNull
     private Event event;
