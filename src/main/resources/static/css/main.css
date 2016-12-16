@@ -1,0 +1,18 @@
+html {
+  background-color: #E9EBEE;
+  font-size: 16px;
+}
+
+body {
+  background-color: #E9EBEE;
+  margin: 0;
+  padding: 0;
+}
+
+.wad-view-wrapper {
+  padding: 1rem;
+}
+
+textarea {
+  resize: vertical;
+}

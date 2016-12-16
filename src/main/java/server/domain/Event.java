@@ -13,25 +13,21 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class Event extends AbstractPersistable<Long> {
     
-    @NotNull
     private Account owner;
 //    private List<Participation> participants;
     @NotNull
     @Length(min = 2, max = 40)
     private String title;
-    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date startTime;
-    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date endTime;
-    @NotNull
     @Length(min = 4, max = 40)
-    private String Place;
+    private String place;
     @Length(max = 200)
-    private String Description;
+    private String description;
 
     public Date getStartTime() {
         return startTime;
@@ -66,19 +62,19 @@ public class Event extends AbstractPersistable<Long> {
     }
 
     public String getPlace() {
-        return Place;
+        return place;
     }
 
     public void setPlace(String Place) {
-        this.Place = Place;
+        this.place = Place;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String Description) {
-        this.Description = Description;
+        this.description = Description;
     }
     
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
+  <head>
+    <title>New event</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css" />
+    <link rel="stylesheet" th:href="@{/css/calendar.css}" href="../../css/calendar.css" />
+    <link rel="stylesheet" th:href="@{/css/navbar.css}" href="../../css/navbar.css" />
+    <link rel="stylesheet" th:href="@{/css/new-event.css}" href="../../css/new-event.css" />
+  </head>
+  <body>
+
+    <header th:replace="components/header :: header">
+      <p>Navigation bar</p>
+    </header>
+
+    <div class="wad-view-wrapper">
+      <div class="wad-new-event">
+        <h1>Add new event</h1>
+        <form th:action="@{/events}" th:method="POST">
+          <div class="col-xs-12">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" name="title" id="title" placeholder="Title"/>
+          </div>
+          <div class="col-xs-12">
+            <label for="place">Place</label>
+            <input type="text" class="form-control" name="place" id="place" placeholder="Place"/>
+          </div>
+          <div class="col-xs-12">
+            <label for="place">Description</label>
+            <textarea rows="4" class="form-control" name="description" id="description" placeholder="Description"/>
+          </div>
+          <button type="submit" class="btn btn-default new-event-button">Add event</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
