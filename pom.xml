@@ -86,7 +86,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>server.CalendarApplication</mainClass>
+                            <mainClass>calendar.CalendarApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
