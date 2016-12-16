@@ -1,13 +1,13 @@
 
-package server.repository;
+package calendar.repository;
 
 import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import server.domain.Account;
-import server.domain.Event;
+import calendar.domain.Account;
+import calendar.domain.Event;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
     

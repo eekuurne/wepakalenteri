@@ -1,12 +1,12 @@
-package server.controller;
+package calendar.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import server.domain.Event;
-import server.service.EventService;
+import calendar.domain.Event;
+import calendar.service.EventService;
 
 @Controller
 public class CalendarController {

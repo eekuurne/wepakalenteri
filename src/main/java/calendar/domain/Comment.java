@@ -1,5 +1,5 @@
 
-package server.domain;
+package calendar.domain;
 
 import java.util.Date;
 import javax.persistence.Entity;

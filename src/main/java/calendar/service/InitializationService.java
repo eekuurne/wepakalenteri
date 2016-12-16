@@ -1,16 +1,16 @@
-package server.service;
+package calendar.service;
 
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import server.domain.Account;
-import server.domain.Event;
-import server.domain.Participation;
-import server.repository.AccountRepository;
-import server.repository.EventRepository;
-import server.repository.ParticipationRepository;
+import calendar.domain.Account;
+import calendar.domain.Event;
+import calendar.domain.Participation;
+import calendar.repository.AccountRepository;
+import calendar.repository.EventRepository;
+import calendar.repository.ParticipationRepository;
 
 @Service
 public class InitializationService {

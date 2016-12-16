@@ -1,4 +1,4 @@
-package server;
+package calendar;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

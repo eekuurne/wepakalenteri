@@ -1,10 +1,10 @@
-package server.service;
+package calendar.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import server.domain.Event;
-import server.repository.EventRepository;
+import calendar.domain.Event;
+import calendar.repository.EventRepository;
 
 @Service
 public class EventService {
