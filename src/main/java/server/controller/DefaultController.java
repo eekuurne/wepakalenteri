@@ -28,7 +28,12 @@ public class DefaultController {
     
     @ResponseBody
     @RequestMapping("/hello")
-    public String handleDefault() {
+    public String helloWorld() {
         return "Hello World!";
+    }
+    
+    @RequestMapping("*")
+    public String handleDefault() {
+        return "redirect:/calendar";
     }
 }

@@ -1,0 +1,26 @@
+.wad-navbar {
+  padding-top: 1rem;
+  background-color: #3D5774;
+  border-bottom: 1px solid #466484;
+  height: 4rem;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
+              0 3px 1px -2px rgba(0, 0, 0, 0.14),
+              0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.wad-navbar .action-wrapper .actions {
+  display: block;
+  margin: auto;
+}
+
+.wad-navbar .navigation-wrapper ul {
+  list-style-type: none;
+  margin: 0 0 1rem 0;
+  padding: 0;
+  overflow: hidden;
+  float: right;
+}
+
+.wad-navbar a {
+  color: white;
+}
