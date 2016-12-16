@@ -1,8 +1,12 @@
-
 package calendar.domain;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -12,9 +16,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Event extends AbstractPersistable<Long> {
-    
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn
     private Account owner;
-//    private List<Participation> participants;
+    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
+    private List<Participation> participants;
     @NotNull
     @Length(min = 2, max = 40)
     private String title;
@@ -28,6 +36,8 @@ public class Event extends AbstractPersistable<Long> {
     private String place;
     @Length(max = 200)
     private String description;
+    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
+    private List<Comment> comments;
 
     public Date getStartTime() {
         return startTime;
@@ -76,5 +86,22 @@ public class Event extends AbstractPersistable<Long> {
     public void setDescription(String Description) {
         this.description = Description;
     }
+
+    public List<Participation> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<Participation> participants) {
+        this.participants = participants;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+    
     
 }

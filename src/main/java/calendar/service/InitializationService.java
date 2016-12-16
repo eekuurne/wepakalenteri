@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import calendar.domain.Account;
+import calendar.domain.Comment;
 import calendar.domain.Event;
+import calendar.domain.Friendship;
 import calendar.domain.Participation;
 import calendar.repository.AccountRepository;
+import calendar.repository.CommentRepository;
 import calendar.repository.EventRepository;
+import calendar.repository.FriendshipRepository;
 import calendar.repository.ParticipationRepository;
 
 @Service
@@ -25,6 +29,10 @@ public class InitializationService {
     private EventRepository eventRepo;
     @Autowired
     private ParticipationRepository participationRepo;
+    @Autowired
+    private CommentRepository commentRepo;
+    @Autowired
+    private FriendshipRepository friendRepo;
 
     public InitializationService() {
         this.dayInMillis = new Long (1000 * 60 * 60 * 24);
@@ -56,7 +64,7 @@ public class InitializationService {
         eventRepo.save(e1);
         
         Event e2 = new Event();
-        e2.setOwner(a1);
+        e2.setOwner(a2);
         e2.setTitle("Event2");
         e2.setDescription("Description2");
         e2.setPlace("Elsewhere");
@@ -73,9 +81,25 @@ public class InitializationService {
         
         Participation p2 = new Participation();
         p2.setAccount(a1);
-        p2.setEvent(e1);
+        p2.setEvent(e2);
         p2.setAccepted(true);
         participationRepo.save(p2);
 
+        //Comment
+        Comment c1 = new Comment();
+        c1.setEvent(e1);
+        c1.setPoster(a1);
+        c1.setMessage("Hello");
+        c1.setPosted(new Date(System.currentTimeMillis()));
+        commentRepo.save(c1);
+        
+        
+        //Friendship
+        Friendship f1 = new Friendship();
+        f1.setAccount1(a1);
+        f1.setAccount2(a2);
+        f1.setAccepted(true);
+        friendRepo.save(f1);
+        
     }
 }
