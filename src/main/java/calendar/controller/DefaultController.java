@@ -16,7 +16,6 @@ public class DefaultController {
     @Autowired
     private FriendService friendService;
     
-    @Profile("default")
     @ResponseBody
     @RequestMapping("/test")
     public String helloWorld() {
