@@ -3,6 +3,7 @@ package calendar.controller;
 import calendar.service.AuthenticationService;
 import calendar.service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +16,7 @@ public class DefaultController {
     @Autowired
     private FriendService friendService;
     
+    @Profile("default")
     @ResponseBody
     @RequestMapping("/test")
     public String helloWorld() {
