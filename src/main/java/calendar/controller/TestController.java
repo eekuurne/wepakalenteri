@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * Controller for testing stuff.
+ */
 @Profile("default")
 @Controller
 public class TestController {
@@ -17,6 +20,11 @@ public class TestController {
     @Autowired
     private EventRepository eventRepo;
 
+    /**
+     * Test URL to listen.
+     * 
+     * @return 
+     */
     @ResponseBody
     @RequestMapping("/test")
     public String test() {

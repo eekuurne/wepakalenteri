@@ -16,6 +16,10 @@ import calendar.repository.EventRepository;
 import calendar.repository.FriendshipRepository;
 import calendar.repository.ParticipationRepository;
 
+/**
+ * A service that adds test data to the database in use.
+ * For now works in Heroku too.
+ */
 @Service
 public class InitializationService {
 
@@ -34,6 +38,9 @@ public class InitializationService {
     @Autowired
     private FriendshipRepository friendRepo;
 
+    /**
+     * Adds test data to the database.
+     */
     @PostConstruct
     public void initialize() {
         //Users
