@@ -7,34 +7,40 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+/**
+ * Friendship can be either a friend request (if accepted == false) or
+ * a friend relation between two accounts (if accepted == true).
+ * The requester is the account that made the request so the friend request should
+ * only be shown on the target account.
+ */
 @Entity
 public class Friendship extends AbstractPersistable<Long> {
     
     @NotNull
     @ManyToOne
     @JoinColumn
-    private Account account1;
+    private Account requester;
     @NotNull
     @ManyToOne
     @JoinColumn
-    private Account account2;
+    private Account target;
     @NotNull
     private boolean accepted;
 
-    public Account getAccount1() {
-        return account1;
+    public Account getRequester() {
+        return requester;
     }
 
-    public void setAccount1(Account account1) {
-        this.account1 = account1;
+    public void setRequester(Account account1) {
+        this.requester = account1;
     }
 
-    public Account getAccount2() {
-        return account2;
+    public Account getTarget() {
+        return target;
     }
 
-    public void setAccount2(Account account2) {
-        this.account2 = account2;
+    public void setTarget(Account account2) {
+        this.target = account2;
     }
 
     public boolean isAccepted() {

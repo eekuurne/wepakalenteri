@@ -113,16 +113,22 @@ public class InitializationService {
         
         //Friendship
         Friendship f1 = new Friendship();
-        f1.setAccount1(a1);
-        f1.setAccount2(a2);
+        f1.setRequester(a1);
+        f1.setTarget(a2);
         f1.setAccepted(true);
         friendRepo.save(f1);
         
         Friendship f2 = new Friendship();
-        f2.setAccount1(a3);
-        f2.setAccount2(a2);
+        f2.setRequester(a3);
+        f2.setTarget(a2);
         f2.setAccepted(true);
         friendRepo.save(f2);
+        
+        Friendship f3 = new Friendship();
+        f3.setRequester(a3);
+        f3.setTarget(a1);
+        f3.setAccepted(false);
+        friendRepo.save(f3);
         
     }
 }
