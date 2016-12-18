@@ -10,9 +10,12 @@ import org.springframework.data.repository.query.Param;
 
 public interface FriendshipRepository extends JpaRepository<Friendship, Long> {
 
-    @Query("SELECT f.account2 FROM Friendship f WHERE f.account1 = :account AND f.accepted = true")
-    public List<Account> findByAccount1(@Param("account") Account account);
+    @Query("SELECT f.target FROM Friendship f WHERE f.requester = :account AND f.accepted = true")
+    public List<Account> findFriendsByRequester(@Param("account") Account account);
     
-    @Query("SELECT f.account1 FROM Friendship f WHERE f.account2 = :account AND f.accepted = true")
-    public List<Account> findByAccount2(@Param("account") Account account);
+    @Query("SELECT f.requester FROM Friendship f WHERE f.target = :account AND f.accepted = true")
+    public List<Account> findFriendsByTarget(@Param("account") Account account);
+    
+    @Query("SELECT f FROM Friendship f WHERE f.target = :account AND f.accepted = false")
+    public List<Friendship> findFriendRequestsByTarget(@Param("account") Account account);
 }

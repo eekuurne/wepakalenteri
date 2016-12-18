@@ -16,6 +16,10 @@ import calendar.repository.EventRepository;
 import calendar.repository.FriendshipRepository;
 import calendar.repository.ParticipationRepository;
 
+/**
+ * A service that adds test data to the database in use.
+ * For now works in Heroku too.
+ */
 @Service
 public class InitializationService {
 
@@ -34,6 +38,9 @@ public class InitializationService {
     @Autowired
     private FriendshipRepository friendRepo;
 
+    /**
+     * Adds test data to the database.
+     */
     @PostConstruct
     public void initialize() {
         //Users
@@ -107,22 +114,35 @@ public class InitializationService {
         c1.setEvent(e1);
         c1.setPoster(a1);
         c1.setMessage("Hello");
-        c1.setPosted(new Date(System.currentTimeMillis()));
+        c1.setPosted(new Date(System.currentTimeMillis() + dayInMillis));
         commentRepo.save(c1);
+        
+        Comment c2 = new Comment();
+        c2.setEvent(e1);
+        c2.setPoster(a2);
+        c2.setMessage("This one should be on top if these are sorted correctly");
+        c2.setPosted(new Date(System.currentTimeMillis()));
+        commentRepo.save(c2);
         
         
         //Friendship
         Friendship f1 = new Friendship();
-        f1.setAccount1(a1);
-        f1.setAccount2(a2);
+        f1.setRequester(a1);
+        f1.setTarget(a2);
         f1.setAccepted(true);
         friendRepo.save(f1);
         
         Friendship f2 = new Friendship();
-        f2.setAccount1(a3);
-        f2.setAccount2(a2);
+        f2.setRequester(a3);
+        f2.setTarget(a2);
         f2.setAccepted(true);
         friendRepo.save(f2);
+        
+        Friendship f3 = new Friendship();
+        f3.setRequester(a3);
+        f3.setTarget(a1);
+        f3.setAccepted(false);
+        friendRepo.save(f3);
         
     }
 }
