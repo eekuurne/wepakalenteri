@@ -107,8 +107,15 @@ public class InitializationService {
         c1.setEvent(e1);
         c1.setPoster(a1);
         c1.setMessage("Hello");
-        c1.setPosted(new Date(System.currentTimeMillis()));
+        c1.setPosted(new Date(System.currentTimeMillis() + dayInMillis));
         commentRepo.save(c1);
+        
+        Comment c2 = new Comment();
+        c2.setEvent(e1);
+        c2.setPoster(a2);
+        c2.setMessage("This one should be on top if these are sorted correctly");
+        c2.setPosted(new Date(System.currentTimeMillis()));
+        commentRepo.save(c2);
         
         
         //Friendship
