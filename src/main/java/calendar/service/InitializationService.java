@@ -15,6 +15,7 @@ import calendar.repository.CommentRepository;
 import calendar.repository.EventRepository;
 import calendar.repository.FriendshipRepository;
 import calendar.repository.ParticipationRepository;
+import java.util.List;
 
 /**
  * A service that adds test data to the database in use.
@@ -43,6 +44,10 @@ public class InitializationService {
      */
     @PostConstruct
     public void initialize() {
+        if (countEntries() > 0) {
+            return;
+        }
+        
         //Users
         Account a1 = new Account();
         a1.setUsername("User1");
@@ -144,5 +149,21 @@ public class InitializationService {
         f3.setAccepted(false);
         friendRepo.save(f3);
         
+    }
+
+    /**
+     * Counts the number of entries in the DB.
+     * 
+     * @return The number of entries in the DB
+     */
+    private Long countEntries() {
+        //Checks if the DB has data
+        Long count = new Long(0);
+        count += accountRepo.count();
+        count += commentRepo.count();
+        count += eventRepo.count();
+        count += friendRepo.count();
+        count += participationRepo.count();
+        return count;
     }
 }
