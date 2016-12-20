@@ -47,14 +47,14 @@ public class AccountRepositoryTest {
     @Test
     public void testFindByUsername() {
         Account a = new Account();
-        a.setUsername("username");
-        String password= encoder.encode("Password");
+        a.setUsername("user1");
+        String password= encoder.encode("Password1");
         a.setPassword(password);
         a.setRole("USER");
 
         accountRepository.save(a);
 
-        Account retrieved = accountRepository.findByUsername("username");
+        Account retrieved = accountRepository.findByUsername("user1");
         assertNotNull(retrieved);
         assertEquals(password, retrieved.getPassword());
         assertEquals("USER", retrieved.getRole());

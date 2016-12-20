@@ -60,8 +60,8 @@ public class CommentRepositoryTest {
     public void testfindByEventOrderByPostedAsc() {
         
         Account a = new Account();
-        a.setUsername("user1");
-        String password= encoder.encode("Password1");
+        a.setUsername("user2");
+        String password= encoder.encode("Password2");
         a.setPassword(password);
         a.setRole("USER");
         accountRepository.save(a);  
@@ -69,9 +69,9 @@ public class CommentRepositoryTest {
       
         Event e = new Event();
         e.setOwner(a);
-        e.setTitle("Event");
-        e.setDescription("Description");
-        e.setPlace("Somewhere");
+        e.setTitle("Event1");
+        e.setDescription("Description1");
+        e.setPlace("Somewhere1");
         e.setStartTime(new Date(System.currentTimeMillis()));
         e.setEndTime(new Date(System.currentTimeMillis() + dayInMillis * 3));
         eventRepository.save(e);
