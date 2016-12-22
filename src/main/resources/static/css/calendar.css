@@ -14,7 +14,7 @@
 .wad-calendar .calendar-day {
   display: inline-block;
   height: 6rem;
-  width: 14.286%;
+  width: 14%;
   border: 1px solid #f2f3f4;
   position: relative;
 }

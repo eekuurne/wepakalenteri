@@ -172,12 +172,12 @@ public class FriendshipRepositoryTest {
         f2.setAccepted(true);
         friendshipRepository.save(f2);
 
-        List<Friendship> retrieved = friendshipRepository.findFriendRequestsByTarget(a2);
+        List<Account> retrieved = friendshipRepository.findRequestersByTarget(a2);
         assertNotNull(retrieved);
         assertEquals(1, retrieved.size());
-        assertEquals("user12", retrieved.get(0).getRequester().getUsername());
-        assertEquals(password, retrieved.get(0).getRequester().getPassword());
-        assertEquals("USER", retrieved.get(0).getRequester().getRole());
+        assertEquals("user12", retrieved.get(0).getUsername());
+        assertEquals(password, retrieved.get(0).getPassword());
+        assertEquals("USER", retrieved.get(0).getRole());
        
 
     }
