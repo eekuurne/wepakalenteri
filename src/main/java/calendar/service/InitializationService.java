@@ -15,7 +15,6 @@ import calendar.repository.CommentRepository;
 import calendar.repository.EventRepository;
 import calendar.repository.FriendshipRepository;
 import calendar.repository.ParticipationRepository;
-import java.util.List;
 
 /**
  * A service that adds test data to the database in use.
@@ -95,6 +94,24 @@ public class InitializationService {
         e3.setEndTime(new Date(System.currentTimeMillis() + dayInMillis * 2));
         eventRepo.save(e3);
         
+        Event e4 = new Event();
+        e4.setOwner(a3);
+        e4.setTitle("Event4");
+        e4.setDescription("Description4");
+        e4.setPlace("Place4");
+        e4.setStartTime(new Date(System.currentTimeMillis() - dayInMillis * 10));
+        e4.setEndTime(new Date(System.currentTimeMillis() + dayInMillis * 2 - dayInMillis / 2));
+        eventRepo.save(e4);
+        
+        Event e5 = new Event();
+        e5.setOwner(a3);
+        e5.setTitle("Event5");
+        e5.setDescription("Description5");
+        e5.setPlace("Place5");
+        e5.setStartTime(new Date(System.currentTimeMillis() + dayInMillis * 2 - dayInMillis / 3));
+        e5.setEndTime(new Date(System.currentTimeMillis() + dayInMillis * 7 - dayInMillis / 2));
+        eventRepo.save(e5);
+        
         //Participation
         Participation p1 = new Participation();
         p1.setAccount(a2);
@@ -113,6 +130,18 @@ public class InitializationService {
         p3.setEvent(e3);
         p3.setAccepted(true);
         participationRepo.save(p3);
+        
+        Participation p4 = new Participation();
+        p4.setAccount(a1);
+        p4.setEvent(e4);
+        p4.setAccepted(true);
+        participationRepo.save(p4);
+        
+        Participation p5 = new Participation();
+        p5.setAccount(a1);
+        p5.setEvent(e5);
+        p5.setAccepted(true);
+        participationRepo.save(p5);
 
         //Comment
         Comment c1 = new Comment();
