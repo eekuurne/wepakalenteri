@@ -31,14 +31,5 @@ public class EventController {
         eventService.save(event);
         return "redirect:/calendar";
     }
-
-//    @ResponseBody
-//    @RequestMapping(value = "/test", method = RequestMethod.GET)
-//    public String test() {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        Account a = accountRepo.findByUsername(auth.getName());
-//        //List<Event> list = eRepo.findByOwnerAndDateBetweenXAndY(a, new Date(System.currentTimeMillis() - InitializationService.dayInMillis * 1), new Date(System.currentTimeMillis() + InitializationService.dayInMillis * 2));
-//        List<Event> list = eRepo.findByParticipationAndDateBetweenXAndY(a, new Date(System.currentTimeMillis() - InitializationService.dayInMillis * 1), new Date(System.currentTimeMillis() + InitializationService.dayInMillis * 2));
-//        return list.toString();
-//    }
+    
 }
