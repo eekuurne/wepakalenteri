@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>tmp</title>
+    </head>
+
+    <body>
+        <div>
+            <h3>Friends</h3>
+            <div th:each="friend : ${friends}">
+                <span th:text="${friend.username}">username</span>
+                <form th:action="@{~/friends/remove}" method="post">
+                    <input type="hidden" name="username" th:value="${friend.username}"/>
+                    <input type="submit" value="Remove friend"/>
+                </form>
+            </div>
+        </div>
+        <div>
+            <h3>Friend requests</h3>
+            <div th:each="requester : ${requesters}">
+                <span th:text="${requester.username}">username</span>
+                <form th:action="@{~/friends}" method="post">
+                    <input type="hidden" name="username" th:value="${requester.username}"/>
+                    <input type="submit" value="Accept"/>
+                </form>
+            </div>
+        </div>
+        <form th:action="@{~/friends}" method="post">
+            <h3>Add a friend</h3>
+            <label>Username:</label>
+            <input type="text" name="username"/>
+            <input type="submit" value="Add"/>
+        </form>
+        <div>
+            <h3>Pending</h3>
+            <div th:each="target : ${pending}">
+                <span th:text="${target.username}">username</span>
+                <form th:action="@{~/friends/remove}" method="post">
+                    <input type="hidden" name="username" th:value="${target.username}"/>
+                    <input type="submit" value="Cancel"/>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
