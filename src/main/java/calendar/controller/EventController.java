@@ -10,6 +10,9 @@ import calendar.service.AuthenticationService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 
+/**
+ * A controller for handling events.
+ */
 @Controller
 @RequestMapping("/events")
 public class EventController {
@@ -20,7 +23,7 @@ public class EventController {
     private AuthenticationService authService;
 
     @RequestMapping(value = "/create")
-    public String newEvent() {
+    public String create() {
         return "newevent";
     }
 
