@@ -113,7 +113,7 @@ public class InitializationService {
         eventRepo.save(e5);
         
         Event e6 = new Event();
-        e6.setOwner(a3);
+        e6.setOwner(a2);
         e6.setTitle("Event6");
         e6.setDescription("Description6");
         e6.setPlace("Place6");
