@@ -23,11 +23,19 @@ public class ReleaseSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/css/**").permitAll()
                 .anyRequest().authenticated();
                 
         http.formLogin()
-                .permitAll().and()
-                .logout().permitAll();
+                .loginPage("/login")
+                .defaultSuccessUrl("/calendar", true)
+                .permitAll();
+        
+        http.logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
+                .permitAll()
+                .invalidateHttpSession(true);
     }
 
     @Autowired
