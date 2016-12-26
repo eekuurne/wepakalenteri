@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CalendarController {
-    
+
     @Autowired
     private DayService dayService;
-    
+
     @RequestMapping(value = "/calendar", method = RequestMethod.GET)
     public String list(Model model,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
@@ -24,10 +24,12 @@ public class CalendarController {
         if (startDate == null) {
             startDate = new Date(System.currentTimeMillis());
         }
-        if (endDate == null) {
-            endDate = new Date(startDate.getTime() + InitializationService.dayInMillis * 27);
+        if (endDate == null || endDate.before(startDate)) {
+            endDate = new Date(startDate.getTime() + InitializationService.dayInMillis * 22);
         }
+
         model.addAttribute("weeks", dayService.generateAndPopulateDays(startDate, endDate));
+
         return "calendar";
     }
 }

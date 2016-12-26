@@ -5,11 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import calendar.domain.Event;
-import calendar.repository.AccountRepository;
 import calendar.repository.EventRepository;
 import java.util.Date;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 @Service
 public class EventService {
@@ -18,8 +15,9 @@ public class EventService {
     private EventRepository eventRepository;
     
     @Autowired
-    private AccountRepository accountRepository;
-    
+    private AuthenticationService authService;
+
+    @Deprecated
     public List<Event> list(Account account, Date start, Date end) {
         /*
         List<Event> events = eventRepository.findByOwnerAndDateBetweenXAndY(account, start, end);
@@ -29,9 +27,7 @@ public class EventService {
     }
     
     public void save(Event event) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Account a = accountRepository.findByUsername(auth.getName());
-        event.setOwner(a);
+        event.setOwner(authService.getUserLoggedIn());
         eventRepository.save(event);
     }
 }
