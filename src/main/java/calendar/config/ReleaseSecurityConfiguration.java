@@ -23,7 +23,7 @@ public class ReleaseSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/css/**").permitAll()
+                .antMatchers("/register", "/css/**", "/js/**").permitAll()
                 .anyRequest().authenticated();
                 
         http.formLogin()

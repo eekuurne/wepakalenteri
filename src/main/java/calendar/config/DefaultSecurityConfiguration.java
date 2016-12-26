@@ -27,7 +27,7 @@ public class DefaultSecurityConfiguration extends WebSecurityConfigurerAdapter {
         
         http.authorizeRequests()
                 //.anyRequest().permitAll();
-                .antMatchers("/h2-console", "/h2-console/*", "/css/**").permitAll()
+                .antMatchers("/register", "/h2-console", "/h2-console/*", "/css/**", "/js/**").permitAll()
                 .anyRequest().authenticated();
                 
         http.formLogin()
