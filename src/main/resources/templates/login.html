@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Calendar - Login</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{~/css/main.css}" href="../../css/main.css" />
+    </head>
+    <body>
+        <div align="center">
+            <h1>Log in to your account</h1>
+            <br/>
+            <!--<div class="alert alert-danger" align="left" th:if="${not #lists.isEmpty(errors)}">
+                <ul>
+                    <li th:each="error : ${errors}" th:text="${error}">error</li>
+                </ul>
+            </div>-->
+            <form method="post" th:action="@{~/login}">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input class="form-control" name="username" th:value="${username}" type="text" style="max-width:600px"/>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input class="form-control" name="password" type="password" style="max-width:600px"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Log in</button>
+            </form>
+            <br/>
+            <br/>
+            <p>Don't have an account? <a th:href="@{~/register}">Create an account.</a></p>
+        </div>
+    </body>
+</html>
