@@ -19,8 +19,8 @@ public class CalendarController {
     
     @RequestMapping(value = "/calendar", method = RequestMethod.GET)
     public String list(Model model,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "dd.MM.yyyy") Date startDate,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "dd.MM.yyyy") Date endDate) {
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
         if (startDate == null) {
             startDate = new Date(System.currentTimeMillis());
         }

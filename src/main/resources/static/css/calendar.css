@@ -2,10 +2,6 @@
   padding: 1rem;
   background-color: #FFFFFF;
   text-align: center;
-  /*
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
-              0 3px 1px -2px rgba(0, 0, 0, 0.14),
-              0 1px 5px 0 rgba(0, 0, 0, 0.12);*/
 }
 
 .wad-calendar .week-wrapper {
@@ -13,18 +9,23 @@
   width: 100%;
   position: relative;
   margin: auto;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
 }
 
 .wad-calendar .calendar-day {
+  border-radius: 2px;
   display: inline-block;
   height: 8rem;
   width: 13.3%;
   border: 1px solid #E7E7E7;
   position: relative;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1),
+              0 3px 1px -2px rgba(0, 0, 0, 0.07),
+              0 1px 5px 0 rgba(0, 0, 0, 0.06);
 }
 
 .wad-calendar .calendar-day-header {
+  padding-top: 0.3rem;
   background-color: #F8F8F8;
   color: #575757;
   height: 20%;
@@ -70,4 +71,8 @@
 .wad-calendar .calendar-day-footer a .glyphicon {
   font-size: 0.9rem;
   color: #777;
+}
+
+.wad-datepicker {
+  margin-top: 1rem;
 }
