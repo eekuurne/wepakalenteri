@@ -1,47 +1,30 @@
-
 package calendar.controller;
 
 import calendar.repository.AccountRepository;
 import calendar.service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- * Handles friend related requests.
- */
 @Controller
-@RequestMapping("/friends")
-public class FriendController {
-
+@RequestMapping("/profile")
+public class ProfileController {
+    
     @Autowired
     private FriendService friendService;
-    @Autowired
-    private AccountRepository accountRepo;
     
     @RequestMapping(method = RequestMethod.GET)
-    public String viewFriends(Model model) {
+    public String view(Model model) {
+        model.addAttribute("username", SecurityContextHolder.getContext().getAuthentication().getName());
         model.addAttribute("friends", friendService.findFriends());
         model.addAttribute("requesters", friendService.getFriendRequesters());
         model.addAttribute("pending", friendService.getPendingRequests());
         
-        return "friends";
-    }
-    
-    @RequestMapping(method = RequestMethod.POST)
-    public String addFriend(@RequestParam("username") String username) {
-        friendService.addFriend(accountRepo.findByUsername(username));
-        
-        return "redirect:/profile";
-    }
-    
-    @RequestMapping(value = "/remove", method = RequestMethod.POST)
-    public String removeFriend(@RequestParam("username") String username) {
-        friendService.removeFriend(accountRepo.findByUsername(username));
-        
-        return "redirect:/profile";
+        return "profile";
     }
 }
