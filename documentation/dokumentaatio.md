@@ -19,17 +19,23 @@ Käyttäjät voivat myös lisätä toisiaan kavereiksi. Tämän tehtyään käyt
 Sovellus löytyy osoitteesta: https://wepakalenteri.herokuapp.com.
 
 
-Sen lähdekoodi löytyy Githubista: https://github.com/eekuurne/wepakalenteri.
+Lähdekoodi löytyy Githubista: https://github.com/eekuurne/wepakalenteri.
 
 
 ## Toteutetut käyttötapaukset
 
-- N/A
+- Login/logout
+- Kalenterin katsominen
+- Kaverien lisääminen ja poistaminen
+- Osallistumisten lisääminen ja poistaminen
 
 
 ## Toteuttamattomat käyttötapaukset
 
-- kaikki
+- Kalenterin näyttöalueen muuttaminen
+- Eventtien CRUD
+- Admin toiminnot (tmp)
+
 
 
 

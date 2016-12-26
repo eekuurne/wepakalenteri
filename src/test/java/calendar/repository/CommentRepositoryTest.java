@@ -1,4 +1,4 @@
-package calendar.repositoryTest;
+package calendar.repository;
 
 import calendar.domain.Account;
 import calendar.domain.Comment;

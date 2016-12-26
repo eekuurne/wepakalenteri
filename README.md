@@ -2,6 +2,11 @@
 
 [![Build Status](https://travis-ci.org/eekuurne/wepakalenteri.svg?branch=master)](https://travis-ci.org/eekuurne/wepakalenteri)
 
+## Linkkejä
+
+- [Heroku](https://wepakalenteri.herokuapp.com)
+- [Dokumentaatio](documentation/dokumentaatio.md)
+
 ## Kuvaus
 
 Tarkoituksena on luoda web-pohjainen kalenterisovellus, jossa käyttäjä voi itse valita näkyvillä olevan ajanjakson pituuden vapaasti. Kalenteriin voi lisätä tapahtumia, joilla on alku- ja loppuajankohdat sekä muuta tarpeellista infoa. Nämä ajankohdat näytetään kalenterissa, jos ne osuvat näytetylle aikavälille. 
