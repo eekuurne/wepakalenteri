@@ -94,6 +94,11 @@ public class FriendService {
         }
     }
     
+    /**
+     * Finds all pending requests made by the logged in user.
+     * 
+     * @return Pending requests made by the logged in user
+     */
     public List<Account> getPendingRequests() {
         return friendRepo.findPendingByRequester(authService.getUserLoggedIn());
     }
