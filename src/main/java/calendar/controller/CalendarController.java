@@ -25,7 +25,7 @@ public class CalendarController {
             startDate = new Date(System.currentTimeMillis());
         }
         if (endDate == null || endDate.before(startDate)) {
-            endDate = new Date(startDate.getTime() + InitializationService.dayInMillis * 22);
+            endDate = new Date(startDate.getTime() + InitializationService.dayInMillis * 120);
         }
 
         model.addAttribute("weeks", dayService.generateAndPopulateDays(startDate, endDate));
