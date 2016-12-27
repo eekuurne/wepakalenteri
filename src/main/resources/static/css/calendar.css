@@ -77,3 +77,17 @@
   margin-top: 1rem;
   max-width: 93.1%;
 }
+
+.start-date-wrapper {
+  padding-left: 0;
+}
+
+.show-button-wrapper {
+  padding-right: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .start-date-wrapper, .end-date-wrapper, .show-button-wrapper {
+    padding: 0;
+  }
+}
