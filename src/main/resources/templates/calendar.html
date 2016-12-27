@@ -16,17 +16,17 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#calendarNavbar">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
+            <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" th:href="@{/calendar}">Wepakalenteri</a>
+          <a class="navbar-brand" th:href="@{~/calendar}">Wepakalenteri</a>
         </div>
         <div class="collapse navbar-collapse" id="calendarNavbar">
           <ul class="nav navbar-nav">
-            <li class="active"><a th:href="@{/events}">Calendar</a></li>
-            <li><a th:href="@{/profile}">Profile</a></li>
+            <li class="active"><a th:href="@{~/calendar}">Calendar</a></li>
+            <li><a th:href="@{~/profile}">Profile</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            <li><a th:href="@{~/logout}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
           </ul>
         </div>
       </div>

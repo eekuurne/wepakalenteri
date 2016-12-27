@@ -10,11 +10,11 @@
         <div align="center">
             <h1>Log in to your account</h1>
             <br/>
-            <!--<div class="alert alert-danger" align="left" th:if="${not #lists.isEmpty(errors)}">
+            <div class="alert alert-danger" align="left" style="max-width:600px" th:if="${error} != null">
                 <ul>
-                    <li th:each="error : ${errors}" th:text="${error}">error</li>
+                    <li th:text="${error}">error</li>
                 </ul>
-            </div>-->
+            </div>
             <form method="post" th:action="@{~/login}">
                 <div class="form-group">
                     <label>Username</label>
