@@ -47,7 +47,7 @@ public class ParticipationController {
             partRepo.save(p);
         }
 
-        return "redirect:/";
+        return "redirect:/events/" + e.getId();
     }
     
     @RequestMapping("/confirm")
@@ -60,7 +60,7 @@ public class ParticipationController {
             partRepo.save(p);
         }
         
-        return "redirect:/participations";
+        return "redirect:/events/" + e.getId();
     }
     
     @RequestMapping("/remove")
@@ -72,7 +72,7 @@ public class ParticipationController {
             partRepo.delete(p);
         }
         
-        return "redirect:/participations";
+        return "redirect:/events/" + e.getId();
     }
 
 }
