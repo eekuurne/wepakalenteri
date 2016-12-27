@@ -1,14 +1,14 @@
 package calendar.controller;
 
-import calendar.domain.Day;
-import calendar.domain.Week;
+import calendar.domain.Account;
+import calendar.domain.Event;
 import calendar.repository.AccountRepository;
 import calendar.repository.CommentRepository;
 import calendar.repository.EventRepository;
+import calendar.repository.ParticipationRepository;
+import calendar.service.AuthenticationService;
 import calendar.service.DayService;
-import static calendar.service.InitializationService.dayInMillis;
-import java.util.Date;
-import java.util.List;
+import calendar.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,13 @@ public class TestController {
     @Autowired
     private EventRepository eventRepo;
     @Autowired
+    private EventService eventService;
+    @Autowired
+    private AuthenticationService authService;
+    @Autowired
     private AccountRepository accountRepo;
+    @Autowired
+    private ParticipationRepository partRepo;
     @Autowired
     private DayService dayService;
 
@@ -39,17 +45,7 @@ public class TestController {
     @ResponseBody
     @RequestMapping("/test")
     public String test() {
-        System.out.println(new Date(System.currentTimeMillis()));
-        List<Week> weeks = dayService.generateAndPopulateDays(new Date(System.currentTimeMillis() - dayInMillis), new Date(System.currentTimeMillis() + dayInMillis * 27));
-        System.out.println(weeks);
-        for (Week week : weeks) {
-            for (int i = 0; i < 7; i++) {
-                Day day = week.getDays()[i];
-                System.out.println(day.getDate());
-                System.out.println(day.getEvents());
-            }
-        }
-        return "See logs";
+        return "nothing here";
     }
 
 }

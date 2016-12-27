@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import calendar.domain.Event;
 import calendar.repository.EventRepository;
 import calendar.service.AuthenticationService;
+import calendar.service.EventService;
+import calendar.service.ParticipationService;
+import javax.validation.Valid;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * A controller for handling events.
@@ -20,7 +24,26 @@ public class EventController {
     @Autowired
     private EventRepository eventRepo;
     @Autowired
+    private EventService eventService;
+    @Autowired
+    private ParticipationService partService;
+    @Autowired
     private AuthenticationService authService;
+
+    @RequestMapping("/{id}")
+    public String view(@RequestParam Long id, Model model) {
+        Event event = eventRepo.findOne(id);
+        if (event == null || !eventService.isParticipatingIn(authService.getUserLoggedIn(), event)) {
+            return "redirect:/";
+        }
+
+        model.addAttribute("event", event);
+        //Comments are accessible from event.comments (FetchType.LAZY)
+        model.addAttribute("participants", partService.getParticipants(event));
+        model.addAttribute("pendingParticipants", partService.getPendingParticipants(event));
+
+        return "event";
+    }
 
     @RequestMapping(value = "/create")
     public String create() {
@@ -28,11 +51,12 @@ public class EventController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String add(Event event) {
+    public String add(@RequestParam Event event) {
+        //Validoitava JS:llä
         event.setOwner(authService.getUserLoggedIn());
         eventRepo.save(event);
 
-        return "redirect:/";
+        return "redirect:/events/" + event.getId();
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
@@ -49,12 +73,13 @@ public class EventController {
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
-    public String handleEdit(Event e) {
+    public String handleEdit(@Valid @RequestParam Event e) {
         if (authService.getUserLoggedIn().equals(e.getOwner())) {
+            //Errorit?
             eventRepo.save(e);
         }
 
-        return "redirect:/";
+        return "redirect:/events/" + e.getId();
     }
 
     @RequestMapping(value = "/{id}/remove", method = RequestMethod.GET)
