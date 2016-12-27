@@ -15,7 +15,7 @@ public class Account extends AbstractPersistable<Long> {
 
     @Column(unique=true)
     @NotNull
-    @Length(min = 4, max = 255)
+    @Length(min = 4, max = 25)
     private String username;
     @NotNull
     @Length(min = 6, max = 255)
