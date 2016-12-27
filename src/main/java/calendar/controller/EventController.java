@@ -56,7 +56,7 @@ public class EventController {
         event.setOwner(authService.getUserLoggedIn());
         eventRepo.save(event);
 
-        return "redirect:/";
+        return "redirect:/events/" + event.getId();
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
@@ -75,11 +75,11 @@ public class EventController {
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
     public String handleEdit(@Valid @RequestParam Event e) {
         if (authService.getUserLoggedIn().equals(e.getOwner())) {
-            //Validoitava JS:llä
+            //Errorit?
             eventRepo.save(e);
         }
 
-        return "redirect:/";
+        return "redirect:/events/" + e.getId();
     }
 
     @RequestMapping(value = "/{id}/remove", method = RequestMethod.GET)
