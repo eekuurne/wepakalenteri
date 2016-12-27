@@ -24,7 +24,7 @@ Lähdekoodi löytyy Githubista: https://github.com/eekuurne/wepakalenteri.
 
 ## Järjestelmän tietosisältö
 
-![Käsitekaavio](documentation/relations.png)
+![Käsitekaavio](relations.png)
 *Käsitekaavio*
 
 
