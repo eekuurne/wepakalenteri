@@ -88,12 +88,44 @@ public class SeleniumLoginTest extends FluentTest {
         WebElement id2 = driver.findElement(By.name("username"));
         WebElement pass2 = driver.findElement(By.name("password"));
         WebElement button2 = driver.findElement(By.xpath("/html/body/div/form/button"));
-        
+
         id2.sendKeys("Hello");
         pass2.sendKeys("MinaTaallaHei");
         button2.submit();
 
         assertTrue(driver.getCurrentUrl().endsWith("/calendar"));
 
+    }
+
+    @Test
+    public void canLogoutTest() {
+        driver.get("http://localhost:" + port + "/login");
+
+        click(find("a").first());
+        assertTrue(driver.getCurrentUrl().endsWith("/register"));
+
+        WebElement id = driver.findElement(By.name("username"));
+        WebElement pass = driver.findElement(By.name("password"));
+        WebElement passConf = driver.findElement(By.name("passwordConfirm"));
+        WebElement button = driver.findElement(By.xpath("/html/body/div/form/button"));
+
+        id.sendKeys("Juuseri");
+        pass.sendKeys("Salasana");
+        passConf.sendKeys("Salasana");
+        button.submit();
+
+        assertTrue(driver.getCurrentUrl().endsWith("/login"));
+
+        WebElement id2 = driver.findElement(By.name("username"));
+        WebElement pass2 = driver.findElement(By.name("password"));
+        WebElement button2 = driver.findElement(By.xpath("/html/body/div/form/button"));
+
+        id2.sendKeys("Juuseri");
+        pass2.sendKeys("Salasana");
+        button2.submit();
+
+        assertTrue(driver.getCurrentUrl().endsWith("/calendar"));
+        driver.findElement(By.linkText("Logout")).click();
+        assertTrue(driver.getCurrentUrl().endsWith("/login"));
     }
 }
