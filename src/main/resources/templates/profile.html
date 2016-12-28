@@ -59,9 +59,12 @@
                     <form th:action="@{~/friends}" method="post">
                         <h3>Add a friend</h3>
                         <label>Username:</label>
-                        <input type="text" name="username"/>
+                        <input type="text" name="username" th:value="${failedFriendUsername}"/>
                         <input class="btn btn-primary" type="submit" value="Add"/>
                     </form>
+                    <ul th:if="${addFriendError} != null">
+                        <li th:text="${addFriendError}">error</li>
+                    </ul>
                     <div>
                         <h3>Pending</h3>
                         <div th:each="target : ${pending}">

@@ -1,6 +1,7 @@
 
 package calendar.controller;
 
+import calendar.domain.Account;
 import calendar.repository.AccountRepository;
 import calendar.service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +23,22 @@ public class FriendController {
     @Autowired
     private AccountRepository accountRepo;
     
-    @RequestMapping(method = RequestMethod.GET)
-    public String viewFriends(Model model) {
-        model.addAttribute("friends", friendService.findFriends());
-        model.addAttribute("requesters", friendService.getFriendRequesters());
-        model.addAttribute("pending", friendService.getPendingRequests());
-        
-        return "friends";
-    }
+//    @RequestMapping(method = RequestMethod.GET)
+//    public String viewFriends(Model model) {
+//        model.addAttribute("friends", friendService.findFriends());
+//        model.addAttribute("requesters", friendService.getFriendRequesters());
+//        model.addAttribute("pending", friendService.getPendingRequests());
+//        
+//        return "friends";
+//    }
     
     @RequestMapping(method = RequestMethod.POST)
-    public String addFriend(@RequestParam("username") String username) {
-        friendService.addFriend(accountRepo.findByUsername(username));
+    public String addFriend(Model model, @RequestParam("username") String username) {
+        Account otherUser = accountRepo.findByUsername(username);
+        if (otherUser == null) {
+            return "redirect:/profile?failedFriendUsername=" + username;
+        }
+        friendService.addFriend(otherUser);
         
         return "redirect:/profile";
     }

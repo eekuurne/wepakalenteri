@@ -51,6 +51,11 @@ public class FriendService {
      */
     public void addFriend(Account otherUser) {
         Account userLoggedIn = authService.getUserLoggedIn();
+        
+        if (userLoggedIn.equals(otherUser)) {
+            return;
+        }
+        
         Friendship friendRequest = friendRepo.findRequestByTargetAndRequester(userLoggedIn, otherUser);
     
         if (friendRequest != null) {
