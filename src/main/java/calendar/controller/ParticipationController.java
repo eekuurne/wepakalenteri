@@ -60,7 +60,7 @@ public class ParticipationController {
             partRepo.save(p);
         }
         
-        return "redirect:/events/" + e.getId();
+        return "redirect:/profile";
     }
     
     @RequestMapping("/remove")
@@ -72,7 +72,7 @@ public class ParticipationController {
             partRepo.delete(p);
         }
         
-        return "redirect:/events/" + e.getId();
+        return "redirect:/profile";
     }
 
 }
