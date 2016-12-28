@@ -24,6 +24,10 @@
   margin-left: 3rem;
 }
 
+.navbar-brand {
+  padding-left: 2rem;
+}
+
 .wad-navbar {
   padding-top: 1rem;
   background-color: #395A83;

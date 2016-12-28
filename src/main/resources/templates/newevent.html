@@ -1,57 +1,36 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
-  <head>
-    <title>New event</title>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css" />
-    <link rel="stylesheet" th:href="@{/css/navbar.css}" href="../../css/navbar.css" />
-    <link rel="stylesheet" th:href="@{/css/new-event.css}" href="../../css/new-event.css" />
-  </head>
-  <body>
+    <head>
+        <title>New event</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css" />
+        <link rel="stylesheet" th:href="@{/css/navbar.css}" href="../../css/navbar.css" />
+        <link rel="stylesheet" th:href="@{/css/new-event.css}" href="../../css/new-event.css" />
+    </head>
+    <body>
 
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#neweventNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
-          </button>
-          <a class="navbar-brand" href="/calendar">Wepakalenteri</a>
-        </div>
-        <div class="collapse navbar-collapse" id="neweventNavbar">
-          <ul class="nav navbar-nav">
-            <li class="active"><a th:href="@{/events}">Calendar</a></li>
-            <li><a th:href="@{/profile}">Profile</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+        <header th:replace="fragments/header :: header"></header>
 
-    <div class="wad-new-event container">
-      <h1>Add new event</h1>
-      <form th:action="@{/events}" th:method="POST">
-        <div class="col-xs-12">
-          <label for="title">Title</label>
-          <input type="text" class="form-control" name="title" id="title" placeholder="Title"/>
+        <div class="wad-new-event container">
+            <h1>Add new event</h1>
+            <form th:action="@{/events}" th:method="POST">
+                <div class="col-xs-12">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" name="title" id="title" placeholder="Title"/>
+                </div>
+                <div class="col-xs-12">
+                    <label for="place">Place</label>
+                    <input type="text" class="form-control" name="place" id="place" placeholder="Place"/>
+                </div>
+                <div class="col-xs-12">
+                    <label for="place">Description</label>
+                    <textarea rows="4" class="form-control" name="description" id="description" placeholder="Description"/>
+                </div>
+                <button type="submit" class="btn btn-default new-event-button">Add event</button>
+            </form>
         </div>
-        <div class="col-xs-12">
-          <label for="place">Place</label>
-          <input type="text" class="form-control" name="place" id="place" placeholder="Place"/>
-        </div>
-        <div class="col-xs-12">
-          <label for="place">Description</label>
-          <textarea rows="4" class="form-control" name="description" id="description" placeholder="Description"/>
-        </div>
-        <button type="submit" class="btn btn-default new-event-button">Add event</button>
-      </form>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-    <script src="js/script.js"></script>
-  </body>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    </body>
 </html>
