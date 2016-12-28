@@ -14,9 +14,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * Service that is used to produce days that are chronologically filled with
- * events. Gives only complete weeks as result.
- * Needs refactoring.
- * 
+ * events. Gives only complete weeks as result. Needs refactoring.
+ *
  * @see calendar.domain.Day
  * @see calendar.domain.Week
  */
@@ -28,19 +27,20 @@ public class DayService {
     @Autowired
     private AuthenticationService authService;
 
-    private final Long dayInMillis = InitializationService.dayInMillis;
+    //private final Long dayInMillis = InitializationService.dayInMillis;
 
     /**
-     * Generates days to fill the given gap.
-     * If events exist for a day they are included with the day.
-     * 
+     * Generates days to fill the given gap. If events exist for a day they are
+     * included with the day.
+     *
      * @param start Start date
      * @param end End date
-     * @return List of complete weeks filled with days potentially filled with events
+     * @return List of complete weeks filled with days potentially filled with
+     * events
      */
     public List<Week> generateAndPopulateDays(Date start, Date end) {
         List<Week> weeks = new ArrayList<>();
-        Calendar c = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
 
         start.setHours(0);
         start.setMinutes(0);
@@ -50,24 +50,29 @@ public class DayService {
         end.setSeconds(0);
 
         //Make start a full week
-        c.setTime(start);
-        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-        while (dayOfWeek != 2) {
-            start.setTime(start.getTime() - dayInMillis);
-            c.setTime(start);
-            dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        calendar.setTime(start);
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        //while (dayOfWeek != 2) {
+        while (dayOfWeek != 1) {
+            //start.setTime(start.getTime() - dayInMillis);
+            start.setDate(start.getDate() - 1);
+            calendar.setTime(start);
+            dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
         }
 
         //Make end a full week
-        c.setTime(end);
-        dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-        while (dayOfWeek != 1) {
-            end.setTime(end.getTime() + dayInMillis);
-            c.setTime(end);
-            dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        calendar.setTime(end);
+        dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        //while (dayOfWeek != 1) {
+        while (dayOfWeek != 7) {
+            //end.setTime(end.getTime() + dayInMillis);
+            end.setDate(end.getDate() + 1);
+            calendar.setTime(end);
+            dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
         }
         //For the next while loop
-        end.setTime(end.getTime() + dayInMillis);
+        //end.setTime(end.getTime() + dayInMillis);
+        start.setDate(start.getDate() + 1);
 
         //Populate weeks and days
         Account user = authService.getUserLoggedIn();
@@ -86,10 +91,13 @@ public class DayService {
 
             //This is to delink the dates
             day.setDate(new Date(start.getTime()));
-            
+//            System.out.println("---");
+//            System.out.println(day.getDate().getDate());
+//            System.out.println(day.getDate().getTime());
+
             boolean startListHasSuitable = true;
             boolean endListHasSuitable = true;
-            
+
             while (true) {
                 Event e = null;
                 if (startListIndex < startListSize) {
@@ -99,9 +107,12 @@ public class DayService {
                 if (endListIndex < endListSize) {
                     e2 = eventsByEndTime.get(endListIndex);
                 }
+                Date dummy = new Date(start.getTime());
+                dummy.setDate(start.getDate() + 1);
                 if (e != null
                         && e.getStartTime().after(start)
-                        && e.getStartTime().before(new Date(start.getTime() + dayInMillis))) {
+                        //&& e.getStartTime().before(new Date(start.getTime() + dayInMillis))) {
+                        && e.getStartTime().before(dummy)) {
                     if (e2 != null && e.getStartTime().after(e2.getEndTime())) {
                     } else {
                         day.addEvent(e);
@@ -113,7 +124,8 @@ public class DayService {
                 }
                 if (e2 != null
                         && e2.getEndTime().after(start)
-                        && e2.getEndTime().before(new Date(start.getTime() + dayInMillis))) {
+                        //&& e2.getEndTime().before(new Date(start.getTime() + dayInMillis))) {
+                        && e2.getEndTime().before(dummy)) {
                     day.addEvent(e2);
                     endListIndex++;
                 } else {
@@ -123,7 +135,8 @@ public class DayService {
                 if (!startListHasSuitable && !endListHasSuitable) {
                     week.setDay(dayOfWeek, day);
                     dayOfWeek++;
-                    start.setTime(start.getTime() + dayInMillis);
+                    //start.setTime(start.getTime() + dayInMillis);
+                    start.setDate(start.getDate() + 1);
                     break;
                 }
             }

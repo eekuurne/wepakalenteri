@@ -25,38 +25,70 @@
                     <div>
                         <h3>Friendlist</h3>
                         <div th:each="friend : ${friends}">
-                            <span th:text="${friend.username}">username</span>
-                            <form th:action="@{~/friends/remove}" method="post">
-                                <input type="hidden" name="username" th:value="${friend.username}"/>
-                                <input type="submit" value="Remove friend"/>
-                            </form>
+                            <ul class="list-inline">
+                                <li><span th:text="${friend.username}">username</span></li>
+                                <li>
+                                    <form th:action="@{~/friends/remove}" method="post">
+                                        <input type="hidden" name="username" th:value="${friend.username}"/>
+                                        <input class="btn btn-danger" type="submit" value="Remove friend"/>
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div>
                         <h3>Friend requests</h3>
                         <div th:each="requester : ${requesters}">
-                            <span th:text="${requester.username}">username</span>
-                            <form th:action="@{~/friends}" method="post">
-                                <input type="hidden" name="username" th:value="${requester.username}"/>
-                                <input type="submit" value="Accept"/>
-                            </form>
+                            <ul class="list-inline">
+                                <li><span th:text="${requester.username}">username</span></li>
+                                <li>
+                                    <form th:action="@{~/friends}" method="post">
+                                        <input type="hidden" name="username" th:value="${requester.username}"/>
+                                        <input class="btn btn-success" type="submit" value="Accept"/>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form th:action="@{~/friends/remove}" method="post">
+                                        <input type="hidden" name="username" th:value="${requester.username}"/>
+                                        <input class="btn btn-danger" type="submit" value="Nah"/>
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <form th:action="@{~/friends}" method="post">
                         <h3>Add a friend</h3>
                         <label>Username:</label>
                         <input type="text" name="username"/>
-                        <input type="submit" value="Add"/>
+                        <input class="btn btn-primary" type="submit" value="Add"/>
                     </form>
                     <div>
                         <h3>Pending</h3>
                         <div th:each="target : ${pending}">
-                            <span th:text="${target.username}">username</span>
-                            <form th:action="@{~/friends/remove}" method="post">
-                                <input type="hidden" name="username" th:value="${target.username}"/>
-                                <input type="submit" value="Cancel"/>
-                            </form>
+                            <ul class="list-inline">
+                                <li><span th:text="${target.username}">username</span></li>
+                                <li>
+                                    <form th:action="@{~/friends/remove}" method="post">
+                                        <input type="hidden" name="username" th:value="${target.username}"/>
+                                        <input class="btn btn-danger" type="submit" value="Cancel"/>
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <h3>Pending invites</h3>
+                    <div th:each="participation : ${pendingParticipations}">
+                        <span th:text="${participation.event.title + ' (by: ' + participation.event.owner.username + ') on ' + #calendars.format(participation.event.startTime,'dd.MM.yyyy HH:mm') + ' - ' + #calendars.format(participation.event.endTime,'dd.MM.yyyy HH:mm')}">Event (by: owner) on startTime - endTime</span>
+                        <ul class="list-inline">
+                            <li>
+                                <a class="btn btn-success" th:href="@{~/events/{id}/participations/confirm(id=${participation.event.id})}">Accept</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-danger" th:href="@{~/events/{id}/participations/remove(id=${participation.event.id})}">Nah</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
