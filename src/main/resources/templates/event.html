@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
     <head>
-        <title>New event</title>
+        <title>Calendar - Event</title>
         <meta charset="UTF-8" />
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
         <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css" />
@@ -75,7 +75,7 @@
                 </table>
             </div>
             <form id="messageForm" th:action="@{~/comments/create}" method="post">
-                <textarea class="form-control" rows="5" id="message" name="message" th:value="${failedMessage}"></textarea>
+                <textarea class="form-control" rows="2" id="message" name="message" th:value="${failedMessage}"></textarea>
                 <ul id="errorList">
                 </ul>
                 <input name="eventId" type="hidden" class="form-control" th:value="${event.id}"/>

@@ -32,15 +32,16 @@ Lähdekoodi löytyy Githubista: https://github.com/eekuurne/wepakalenteri.
 
 - Login/logout
 - Kalenterin katsominen
-- Kaverien lisääminen ja poistaminen
-- Osallistumisten lisääminen ja poistaminen
+- Kalenterin näyttöalueen muuttaminen
+- Kaverien hallinta
+- Osallistumisten hallinta
+- Eventtien katselu
 
 
 ## Toteuttamattomat käyttötapaukset
 
-- Kalenterin näyttöalueen muuttaminen
-- Eventtien CRUD
-- Admin toiminnot (tmp)
+- Eventtien lisääminen, poistaminen ja editointi
+- Admintoiminnot (tmp)
 
 
 
