@@ -14,7 +14,7 @@ public class EventService {
     private ParticipationRepository partRepo;
     
     public boolean isParticipatingIn(Account a, Event e) {
-        Participation p = partRepo.findByEventAndAccountAndAccepted(e, a, true);
+        Participation p = partRepo.findByEventAndAccount(e, a);
         Account owner = e.getOwner();
         
         if (owner.equals(a) || p != null) {

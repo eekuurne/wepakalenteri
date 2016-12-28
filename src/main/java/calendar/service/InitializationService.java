@@ -170,7 +170,7 @@ public class InitializationService {
         Participation p7 = new Participation();
         p7.setAccount(a3);
         p7.setEvent(e1);
-        p7.setAccepted(true);
+        p7.setAccepted(false);
         participationRepo.save(p7);
 
         //Comment

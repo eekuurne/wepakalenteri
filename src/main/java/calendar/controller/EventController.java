@@ -1,10 +1,12 @@
 package calendar.controller;
 
+import calendar.domain.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import calendar.domain.Event;
+import calendar.repository.CommentRepository;
 import calendar.repository.EventRepository;
 import calendar.service.AuthenticationService;
 import calendar.service.EventService;
@@ -24,6 +26,8 @@ public class EventController {
     @Autowired
     private EventRepository eventRepo;
     @Autowired
+    private CommentRepository commentRepo;
+    @Autowired
     private EventService eventService;
     @Autowired
     private ParticipationService partService;
@@ -31,14 +35,20 @@ public class EventController {
     private AuthenticationService authService;
 
     @RequestMapping("/{id}")
-    public String view(@RequestParam Long id, Model model) {
+    public String view(@PathVariable Long id, Model model, @RequestParam(required = false) String failedUsername) {
         Event event = eventRepo.findOne(id);
-        if (event == null || !eventService.isParticipatingIn(authService.getUserLoggedIn(), event)) {
+        Account userLoggedIn = authService.getUserLoggedIn();
+        if (event == null || !eventService.isParticipatingIn(userLoggedIn, event)) {
             return "redirect:/";
         }
 
+        if (failedUsername != null) {
+            model.addAttribute("failedUsername", failedUsername);
+            model.addAttribute("inviteError", "that user is not your friend");
+        }
+        model.addAttribute("userLoggedIn", userLoggedIn);
         model.addAttribute("event", event);
-        //Comments are accessible from event.comments (FetchType.LAZY)
+        model.addAttribute("comments", commentRepo.findByEventOrderByPostedAsc(event));
         model.addAttribute("participants", partService.getParticipants(event));
         model.addAttribute("pendingParticipants", partService.getPendingParticipants(event));
 

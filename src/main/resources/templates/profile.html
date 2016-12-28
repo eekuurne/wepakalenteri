@@ -83,7 +83,8 @@
                 <div class="col-xs-12 col-md-6">
                     <h3>Pending invites</h3>
                     <div th:each="participation : ${pendingParticipations}">
-                        <span th:text="${participation.event.title + ' (by: ' + participation.event.owner.username + ') on ' + #calendars.format(participation.event.startTime,'dd.MM.yyyy HH:mm') + ' - ' + #calendars.format(participation.event.endTime,'dd.MM.yyyy HH:mm')}">Event (by: owner) on startTime - endTime</span>
+                        <span><a th:text="${participation.event.title}" th:href="@{~/events/{id}(id=${participation.event.id})}">Event title</a></span>
+                        <span th:text="${' (by: ' + participation.event.owner.username + ') on ' + #calendars.format(participation.event.startTime,'dd.MM.yyyy HH:mm') + ' - ' + #calendars.format(participation.event.endTime,'dd.MM.yyyy HH:mm')}">Event (by: owner) on startTime - endTime</span>
                         <ul class="list-inline">
                             <li>
                                 <a class="btn btn-success" th:href="@{~/events/{id}/participations/confirm(id=${participation.event.id})}">Accept</a>

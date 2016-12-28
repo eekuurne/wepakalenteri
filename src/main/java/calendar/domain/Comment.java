@@ -24,7 +24,7 @@ public class Comment extends AbstractPersistable<Long> {
     @JoinColumn
     private Account poster;
     @NotNull
-    @Length(min = 1, max = 200)
+    @Length(min = 1, max = 255)
     private String message;
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
