@@ -23,7 +23,7 @@ import calendar.repository.ParticipationRepository;
 @Service
 public class InitializationService {
 
-    public static final Long dayInMillis = new Long (1000 * 60 * 60 * 24);
+    public static final Long dayInMillis = new Long (86400000); //1000 * 60 * 60 * 24
     
     @Autowired
     private AccountRepository accountRepo;
