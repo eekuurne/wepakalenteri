@@ -35,21 +35,24 @@ public class ParticipationController {
         Event e = eventRepo.findOne(id);
         Account userLoggedIn = authService.getUserLoggedIn();
         Account user = accountRepo.findByUsername(username);
+        String additionalParams = "";
         if (userLoggedIn.equals(e.getOwner())
                 && !userLoggedIn.equals(user)
                 && partRepo.findByEventAndAccount(e, user) == null
                 && friendService.findFriends().contains(user)) {
-            
+
             Participation p = new Participation();
             p.setEvent(e);
             p.setAccount(user);
             p.setAccepted(false);
             partRepo.save(p);
+        } else {
+            additionalParams = "?failedUsername=" + username;
         }
 
-        return "redirect:/events/" + e.getId();
+        return "redirect:/events/" + e.getId() + additionalParams;
     }
-    
+
     @RequestMapping("/confirm")
     public String confirm(@PathVariable Long id) {
         Event e = eventRepo.findOne(id);
@@ -59,20 +62,32 @@ public class ParticipationController {
             p.setAccepted(true);
             partRepo.save(p);
         }
-        
-        return "redirect:/profile";
-    }
-    
-    @RequestMapping("/remove")
-    public String remove(@PathVariable Long id) {
-        Event e = eventRepo.findOne(id);
-        Account userLoggedIn = authService.getUserLoggedIn();
-        Participation p = partRepo.findByEventAndAccount(e, userLoggedIn);
-        if (p != null) {
-            partRepo.delete(p);
-        }
-        
+
         return "redirect:/profile";
     }
 
+    @RequestMapping("/remove")
+    public String remove(@PathVariable Long id, @RequestParam(required = false) String username) {
+        Event e = eventRepo.findOne(id);
+        Account userLoggedIn = authService.getUserLoggedIn();
+        Participation p;
+        if (username != null) {
+            if (userLoggedIn.equals(e.getOwner())) {
+                Account user = accountRepo.findByUsername(username);
+                p = partRepo.findByEventAndAccount(e, user);
+            } else {
+                return "redirect:/";
+            }
+        } else {
+            p = partRepo.findByEventAndAccount(e, userLoggedIn);
+        }
+        if (p != null) {
+            partRepo.delete(p);
+        }
+
+        if (username != null) {
+            return "redirect:/events/" + e.getId();
+        }
+        return "redirect:/profile";
+    }
 }

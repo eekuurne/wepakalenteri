@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
+    <head>
+        <title>Calendar - Event</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css" />
+        <link rel="stylesheet" th:href="@{/css/navbar.css}" href="../../css/navbar.css" />
+    </head>
+    <body>
+
+        <header th:replace="fragments/header :: header"></header>
+
+        <div class="container-fluid">
+            <div>
+                <h2 th:text="${event.title}">Title</h2>
+                <label>Place: </label>
+                <span th:text="${event.place}">place</span>
+                <br/>
+                <label>Starts: </label>
+                <span th:text="${#calendars.format(event.startTime,'dd.MM.yyyy HH:mm')}">startTime</span>
+                <br/>
+                <label>Ends: </label>
+                <span th:text="${#calendars.format(event.endTime,'dd.MM.yyyy HH:mm')}">endTime</span>
+                <br/>
+                <label>Description:</label>
+                <p th:text="${event.description}">description</p>
+                <label>Owner: </label>
+                <span th:text="${event.owner.username}">username</span>
+            </div>
+            <div>
+                <h3>Participants</h3>
+                <ul>
+                    <li th:each="participant : ${participants}">
+                        <ul class="list-inline">
+                            <li th:text="${participant.username}">username</li>
+                            <li th:if="${userLoggedIn.username == event.owner.username or userLoggedIn.username == participant.username}">
+                                <a class="btn btn-danger" th:href="@{~/events/{id}/participations/remove(id=${event.id}, username=${participant.username})}">Remove</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <h4>Pending</h4>
+                <ul>
+                    <li th:each="participant : ${pendingParticipants}">
+                        <ul class="list-inline">
+                            <li th:text="${participant.username}">username</li>
+                            <li th:if="${userLoggedIn.username == event.owner.username or userLoggedIn.username == participant.username}">
+                                <a class="btn btn-warning" th:href="@{~/events/{id}/participations/remove(id=${event.id}, username=${participant.username})}">Cancel</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="form-inline" th:if="${userLoggedIn.username == event.owner.username}" th:action="@{~/events/{id}/participations(id=${event.id})}" method="post">
+                    <h3>Invite a friend to participate</h3>
+                    <label>Username:</label>
+                    <input type="text" name="user" th:value="${failedUsername}"/>
+                    <input class="btn btn-primary" type="submit" value="Add"/>
+                </form>
+                <ul th:if="${inviteError} != null">
+                    <li th:text="${inviteError}">error</li>
+                </ul>
+            </div>
+            <br/>
+            <div>
+                <h3>Comments</h3>
+                <table class="table table-bordered table-striped" style="width:100%">
+                    <tbody>
+                        <tr th:each="comment : ${comments}">
+                            <td style="width:20%;text-align:center" th:text="${comment.poster.username}">poster</td>
+                            <td style="width:60%" th:text="${comment.message}">message</td>
+                            <td style="width:20%;text-align:center" th:text="${#calendars.format(comment.posted,'dd.MM.yyyy HH:mm')}">posted (dd.MM.yyyy HH:mm)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <form id="messageForm" th:action="@{~/comments/create}" method="post">
+                <textarea class="form-control" rows="2" id="message" name="message" th:value="${failedMessage}"></textarea>
+                <ul id="errorList">
+                </ul>
+                <input name="eventId" type="hidden" class="form-control" th:value="${event.id}"/>
+                <button type="submit" class="btn btn-default">Send</button>
+            </form>
+        </div>
+        <br/>
+
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script src="/js/validation.js"></script>
+    </body>
+</html>
