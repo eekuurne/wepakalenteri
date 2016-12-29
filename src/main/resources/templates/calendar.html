@@ -39,7 +39,7 @@
                     </div>
                     <div class="calendar-day-content">
                         <div th:each="event : ${day.events}">
-                            <span th:text="${event.title}">title</span>
+                            <a th:href="@{~/events/{id}(id=${event.id})}"><span th:text="${event.title}">title</span></a>
                         </div>
                     </div>
                     <div class="calendar-day-footer">
