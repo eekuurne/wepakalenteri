@@ -34,8 +34,11 @@
                     <li th:each="participant : ${participants}">
                         <ul class="list-inline">
                             <li th:text="${participant.username}">username</li>
-                            <li th:if="${userLoggedIn.username == event.owner.username or userLoggedIn.username == participant.username}">
+                            <li th:if="${userLoggedIn.username == event.owner.username}">
                                 <a class="btn btn-danger" th:href="@{~/events/{id}/participations/remove(id=${event.id}, username=${participant.username})}">Remove</a>
+                            </li>
+                            <li th:if="${userLoggedIn.username == participant.username}">
+                                <a class="btn btn-danger" th:href="@{~/events/{id}/participations/remove(id=${event.id})}">Remove</a>
                             </li>
                         </ul>
                     </li>
@@ -45,8 +48,11 @@
                     <li th:each="participant : ${pendingParticipants}">
                         <ul class="list-inline">
                             <li th:text="${participant.username}">username</li>
-                            <li th:if="${userLoggedIn.username == event.owner.username or userLoggedIn.username == participant.username}">
+                            <li th:if="${userLoggedIn.username == event.owner.username}">
                                 <a class="btn btn-warning" th:href="@{~/events/{id}/participations/remove(id=${event.id}, username=${participant.username})}">Cancel</a>
+                            </li>
+                            <li th:if="${userLoggedIn.username == participant.username}">
+                                <a class="btn btn-danger" th:href="@{~/events/{id}/participations/remove(id=${event.id})}">Remove</a>
                             </li>
                         </ul>
                     </li>
