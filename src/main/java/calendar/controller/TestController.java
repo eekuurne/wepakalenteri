@@ -45,10 +45,6 @@ public class TestController {
     @ResponseBody
     @RequestMapping("/test")
     public String test() {
-        Day d = dayService.getSingleDay(new Date(System.currentTimeMillis()));
-        System.out.println(d);
-        System.out.println(d.getDate());
-        System.out.println(d.getEvents());
         
         return "see logs";
     }

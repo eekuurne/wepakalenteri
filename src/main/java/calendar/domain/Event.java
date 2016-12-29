@@ -7,6 +7,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -29,6 +31,7 @@ public class Event extends AbstractPersistable<Long> {
     @NotNull
     @ManyToOne
     @JoinColumn
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Account owner;
 //    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
 //    private List<Participation> participants;

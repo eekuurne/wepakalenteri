@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Calendar - Admin page</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css" />
+        <link rel="stylesheet" th:href="@{/css/navbar.css}" href="../../css/navbar.css" />
+    </head>
+
+    <body>
+        <header th:replace="fragments/header :: header"></header>
+
+
+        <div class="container-fluid">
+            <h2>Admin page</h2>
+
+            <div>
+                <h3>Users</h3>
+                <ul>
+                    <li th:each="user : ${accounts}" th:text="${user.username}">username</li>
+                </ul>
+            </div>
+            <div>
+                <form th:action="@{~/admin/accounts}" method="post">
+                    <h3>Delete user</h3>
+                    <label>Username:</label>
+                    <input type="text" name="username" th:value="${failedUsername}"/>
+                    <input class="btn btn-danger" type="submit" value="Delete"/>
+                </form>
+                <ul th:if="${userError} != null">
+                    <li th:text="${userError}">error</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    </body>
+</html>
