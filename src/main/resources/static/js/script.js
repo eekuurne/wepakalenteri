@@ -4,6 +4,8 @@ $(document).ready(function() {
     initDatepicker();
   } else if (window.location.pathname === "/profile") {
     document.getElementById("profile-nav").className = "active";
+  } else if (window.location.pathname.includes("/events/create")) {
+    document.getElementById("new-event-nav").className = "active";
   }
 });
 
@@ -29,10 +31,10 @@ function getDateDaysFromNow(days) {
   var yyyy = today.getFullYear();
 
   if(dd<10) {
-      dd = '0' + dd;
+    dd = '0' + dd;
   } 
   if(mm<10) {
-      mm = '0' + mm;
+    mm = '0' + mm;
   } 
   return yyyy + '-' + mm + '-' + dd;
 }

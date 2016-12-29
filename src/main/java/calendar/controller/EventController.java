@@ -9,10 +9,15 @@ import calendar.domain.Event;
 import calendar.repository.CommentRepository;
 import calendar.repository.EventRepository;
 import calendar.service.AuthenticationService;
+import calendar.service.DayService;
 import calendar.service.EventService;
 import calendar.service.ParticipationService;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.validation.Valid;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -29,6 +34,8 @@ public class EventController {
     private CommentRepository commentRepo;
     @Autowired
     private EventService eventService;
+    @Autowired
+    private DayService dayService;
     @Autowired
     private ParticipationService partService;
     @Autowired
@@ -56,16 +63,35 @@ public class EventController {
     }
 
     @RequestMapping(value = "/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("startDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
+        model.addAttribute("startTime", "12:00");
+        model.addAttribute("endDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
+        model.addAttribute("endTime", "13:00");
+        return "newevent";
+    }
+    
+    @RequestMapping(value = "/create/{date}")
+    public String createToDate(Model model,
+            @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+        model.addAttribute("startDate", new SimpleDateFormat("yyyy-MM-dd").format(date));
+        model.addAttribute("startTime", "12:00");
+        model.addAttribute("endDate", new SimpleDateFormat("yyyy-MM-dd").format(date));
+        model.addAttribute("endTime", "13:00");
         return "newevent";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String add(@RequestParam Event event) {
-        //Validoitava JS:llä
-        event.setOwner(authService.getUserLoggedIn());
-        eventRepo.save(event);
-
+    public String add(@RequestParam String title,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "HH:mm") Date startTime,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "HH:mm") Date endTime,
+            @RequestParam String place,
+            @RequestParam String description) {
+        
+        Event event = eventService.createEvent(title, place, description, startDate, startTime, endDate, endTime);
+        
         return "redirect:/events/" + event.getId();
     }
 
