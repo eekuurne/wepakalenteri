@@ -78,7 +78,7 @@ public class DayService {
         Account user = authService.getUserLoggedIn();
         List<Event> eventsByStartTime = eventRepo.findByParticipationAndStartTimeBetweenXAndY(user, start, end);
         List<Event> eventsByEndTime = eventRepo.findByParticipationAndEndTimeBetweenXAndY(user, start, end);
-
+     
         Week week = new Week();
         dayOfWeek = 0;
         int startListIndex = 0;
@@ -89,11 +89,9 @@ public class DayService {
         while (start.before(end)) {
             Day day = new Day();
 
-            //This is to delink the dates
+            //This is to delink the dates. Otherwise all the events have the
+            //same date.
             day.setDate(new Date(start.getTime()));
-//            System.out.println("---");
-//            System.out.println(day.getDate().getDate());
-//            System.out.println(day.getDate().getTime());
 
             boolean startListHasSuitable = true;
             boolean endListHasSuitable = true;

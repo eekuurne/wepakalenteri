@@ -66,6 +66,12 @@ public class InitializationService {
         a3.setRole("USER");
         accountRepo.save(a3);
         
+        Account admin = new Account();
+        admin.setUsername("Admin");
+        admin.setPassword(encoder.encode("Admin"));
+        admin.setRole("ADMIN");
+        accountRepo.save(admin);
+        
         //Events
         Event e1 = new Event();
         e1.setOwner(a1);

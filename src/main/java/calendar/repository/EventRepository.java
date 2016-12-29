@@ -29,7 +29,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             + " ORDER BY e.startTime ASC")
     public List<Event> findByParticipationAndDateBetweenXAndY(@Param("user") Account user, @Param("start") Date start, @Param("end") Date end);
 
-    @Query("SELECT e"
+        @Query("SELECT DISTINCT e"
             + " FROM Participation p"
             + " INNER JOIN p.event e"
             + " WHERE (e.startTime BETWEEN :start AND :end)"
@@ -39,7 +39,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             + " ORDER BY e.startTime ASC")
     public List<Event> findByParticipationAndStartTimeBetweenXAndY(@Param("user") Account user, @Param("start") Date start, @Param("end") Date end);
 
-    @Query("SELECT e"
+    @Query("SELECT DISTINCT e"
             + " FROM Participation p"
             + " INNER JOIN p.event e"
             + " WHERE (e.endTime BETWEEN :start AND :end)"
