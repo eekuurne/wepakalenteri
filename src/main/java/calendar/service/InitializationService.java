@@ -138,11 +138,15 @@ public class InitializationService {
         
         Event e8 = new Event();
         e8.setOwner(a1);
-        e8.setTitle("Event8");
-        e8.setDescription("Description8");
+        e8.setTitle("Start same day as e1");
+        e8.setDescription("This event's start should be on the same day as Event1");
         e8.setPlace("Place8");
-        e8.setStartTime(new Date(System.currentTimeMillis() + dayInMillis));
-        e8.setEndTime(new Date(System.currentTimeMillis() + dayInMillis * 3/2));
+        Date d8 = new Date(System.currentTimeMillis());
+        d8.setHours(0);
+        d8.setMinutes(0);
+        d8.setSeconds(0);
+        e8.setStartTime(d8);
+        e8.setEndTime(new Date(System.currentTimeMillis() + dayInMillis * 10));
         eventRepo.save(e8);
         
         //Participation

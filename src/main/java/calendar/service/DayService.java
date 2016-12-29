@@ -44,9 +44,11 @@ public class DayService {
         start.setHours(0);
         start.setMinutes(0);
         start.setSeconds(0);
+        start.setTime((start.getTime() / 1000) * 1000);
         end.setHours(0);
         end.setMinutes(0);
         end.setSeconds(0);
+        end.setTime((end.getTime() / 1000) * 1000);
 
         if (!skipWeekStreching) {
             makeStartAndEndFullWeeks(calendar, start, end);
@@ -90,8 +92,10 @@ public class DayService {
                 }
                 Date dummy = new Date(start.getTime());
                 dummy.setDate(start.getDate() + 1);
+
                 if (e != null
-                        && e.getStartTime().after(start)
+                        //&& e.getStartTime().after(start)
+                        && e.getStartTime().getTime() >= start.getTime()
                         //&& e.getStartTime().before(new Date(start.getTime() + dayInMillis))) {
                         && e.getStartTime().before(dummy)) {
                     if (e2 != null && e.getStartTime().after(e2.getEndTime())) {
@@ -107,7 +111,8 @@ public class DayService {
                     startListHasSuitable = false;
                 }
                 if (e2 != null
-                        && e2.getEndTime().after(start)
+                        //&& e2.getEndTime().after(start)
+                        && e2.getEndTime().getTime() >= start.getTime()
                         //&& e2.getEndTime().before(new Date(start.getTime() + dayInMillis))) {
                         && e2.getEndTime().before(dummy)) {
                     Event dummyE2 = new Event(e2);
