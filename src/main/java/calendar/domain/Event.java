@@ -15,13 +15,26 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class Event extends AbstractPersistable<Long> {
+    
+    public Event() {
+    }
+    
+    public Event(Event e){
+        this.setId(e.getId());
+        this.owner = e.getOwner();
+        this.title = e.getTitle();
+        this.description = e.getDescription();
+        this.place = e.getPlace();
+        this.startTime = e.getStartTime();
+        this.endTime = e.getEndTime();
+    }
 
     @NotNull
     @ManyToOne
     @JoinColumn
     private Account owner;
-    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
-    private List<Participation> participants;
+//    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
+//    private List<Participation> participants;
     @NotNull
     @Length(min = 2, max = 40)
     private String title;
@@ -35,8 +48,8 @@ public class Event extends AbstractPersistable<Long> {
     private String place;
     @Length(max = 200)
     private String description;
-    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
-    private List<Comment> comments;
+//    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
+//    private List<Comment> comments;
 
     public Date getStartTime() {
         return startTime;
@@ -86,21 +99,21 @@ public class Event extends AbstractPersistable<Long> {
         this.description = Description;
     }
 
-    public List<Participation> getParticipants() {
-        return participants;
-    }
-
-    public void setParticipants(List<Participation> participants) {
-        this.participants = participants;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
+//    public List<Participation> getParticipants() {
+//        return participants;
+//    }
+//
+//    public void setParticipants(List<Participation> participants) {
+//        this.participants = participants;
+//    }
+//
+//    public List<Comment> getComments() {
+//        return comments;
+//    }
+//
+//    public void setComments(List<Comment> comments) {
+//        this.comments = comments;
+//    }
     
     
 }

@@ -51,7 +51,7 @@ public class DayService {
         if (!skipWeekStreching) {
             makeStartAndEndFullWeeks(calendar, start, end);
 
-        //For the next while loop.
+            //For the next while loop.
             //end.setTime(end.getTime() + dayInMillis);
             end.setDate(end.getDate() + 1);
         }
@@ -96,7 +96,10 @@ public class DayService {
                         && e.getStartTime().before(dummy)) {
                     if (e2 != null && e.getStartTime().after(e2.getEndTime())) {
                     } else {
-                        day.addEvent(e);
+                        Event dummyE = new Event(e);
+                        dummyE.setTitle(dummyE.getTitle() + " - Start");
+                        day.addEvent(dummyE);
+                        //day.addEvent(e);
                         startListIndex++;
                         continue;
                     }
@@ -107,7 +110,10 @@ public class DayService {
                         && e2.getEndTime().after(start)
                         //&& e2.getEndTime().before(new Date(start.getTime() + dayInMillis))) {
                         && e2.getEndTime().before(dummy)) {
-                    day.addEvent(e2);
+                    Event dummyE2 = new Event(e2);
+                    dummyE2.setTitle(dummyE2.getTitle() + " - End");
+                    day.addEvent(dummyE2);
+                    //day.addEvent(e2);
                     endListIndex++;
                 } else {
                     endListHasSuitable = false;
