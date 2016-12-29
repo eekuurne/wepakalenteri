@@ -87,6 +87,7 @@
 }
 
 @media screen and (max-width: 767px) {
+  
   .start-date-wrapper, .end-date-wrapper, .show-button-wrapper {
     padding: 0;
   }

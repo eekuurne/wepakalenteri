@@ -11,8 +11,12 @@ import calendar.repository.EventRepository;
 import calendar.service.AuthenticationService;
 import calendar.service.EventService;
 import calendar.service.ParticipationService;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.validation.Valid;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -56,14 +60,47 @@ public class EventController {
     }
 
     @RequestMapping(value = "/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("startTime", new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
+        return "newevent";
+    }
+    
+    @RequestMapping(value = "/create/{date}")
+    public String createToDate(Model model,
+            @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+        model.addAttribute("startTime", new SimpleDateFormat("yyyy-MM-dd").format(date));
         return "newevent";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String add(@RequestParam Event event) {
+    public String add(@RequestParam String title,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date startTime,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime,
+            @RequestParam String place,
+            @RequestParam String description) {
+        
         //Validoitava JS:llä
+        
+        Event event = new Event();
+        event.setTitle(title);
+        event.setPlace(place);
+        event.setDescription(description);
         event.setOwner(authService.getUserLoggedIn());
+        
+        if (startTime != null) {
+            event.setStartTime(startTime);
+        } else {
+            event.setStartTime(new Date(System.currentTimeMillis()));
+        }
+        if (endTime != null) {
+            if (event.getStartTime().before(endTime)) {
+                event.setEndTime(endTime);
+            } else {
+                event.setEndTime(event.getStartTime());
+            }
+        } else {
+            event.setEndTime(event.getStartTime());
+        }
         eventRepo.save(event);
 
         return "redirect:/events/" + event.getId();
