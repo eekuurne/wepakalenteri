@@ -136,6 +136,15 @@ public class InitializationService {
         e7.setEndTime(new Date(System.currentTimeMillis() + dayInMillis * 3/2));
         eventRepo.save(e7);
         
+        Event e8 = new Event();
+        e8.setOwner(a1);
+        e8.setTitle("Event8");
+        e8.setDescription("Description8");
+        e8.setPlace("Place8");
+        e8.setStartTime(new Date(System.currentTimeMillis() + dayInMillis));
+        e8.setEndTime(new Date(System.currentTimeMillis() + dayInMillis * 3/2));
+        eventRepo.save(e8);
+        
         //Participation
         Participation p1 = new Participation();
         p1.setAccount(a2);
