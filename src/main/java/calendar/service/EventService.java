@@ -17,7 +17,7 @@ public class EventService {
         Participation p = partRepo.findByEventAndAccount(e, a);
         Account owner = e.getOwner();
         
-        if (owner.getUsername().equals(a.getUsername()) || p != null) {
+        if (owner.equals(a) || p != null) {
             return true;
         }
         
