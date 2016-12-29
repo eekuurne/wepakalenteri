@@ -20,12 +20,20 @@
                     <input type="text" class="form-control" name="title" id="title" placeholder="Title"/>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <label for="startTime">Start date</label>
-                    <input type="date" class="form-control" name="startTime" id="startTime" th:value="${startTime}"/>
+                    <label for="startDate">Start date</label>
+                    <input type="date" class="form-control" name="startDate" id="startDate" th:value="${startDate}" placeholder="yyyy-MM-dd"/>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <label for="endTime">End date</label>
-                    <input type="date" class="form-control" name="endTime" id="endTime"/>
+                    <label for="endDate">End date</label>
+                    <input type="date" class="form-control" name="endDate" id="endDate" th:value="${endDate}" placeholder="yyyy-MM-dd"/>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <label for="startTime">Start time</label>
+                    <input type="time" class="form-control" name="startTime" id="startTime" th:value="${startTime}" placeholder="HH:mm"/>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <label for="endTime">End time</label>
+                    <input type="time" class="form-control" name="endTime" id="endTime" th:value="${endTime}" placeholder="HH:mm"/>
                 </div>
                 <div class="col-xs-12">
                     <label for="place">Place</label>

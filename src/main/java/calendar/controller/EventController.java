@@ -9,6 +9,7 @@ import calendar.domain.Event;
 import calendar.repository.CommentRepository;
 import calendar.repository.EventRepository;
 import calendar.service.AuthenticationService;
+import calendar.service.DayService;
 import calendar.service.EventService;
 import calendar.service.ParticipationService;
 import java.text.SimpleDateFormat;
@@ -33,6 +34,8 @@ public class EventController {
     private CommentRepository commentRepo;
     @Autowired
     private EventService eventService;
+    @Autowired
+    private DayService dayService;
     @Autowired
     private ParticipationService partService;
     @Autowired
@@ -61,48 +64,34 @@ public class EventController {
 
     @RequestMapping(value = "/create")
     public String create(Model model) {
-        model.addAttribute("startTime", new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
+        model.addAttribute("startDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
+        model.addAttribute("startTime", "12:00");
+        model.addAttribute("endDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
+        model.addAttribute("endTime", "13:00");
         return "newevent";
     }
     
     @RequestMapping(value = "/create/{date}")
     public String createToDate(Model model,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
-        model.addAttribute("startTime", new SimpleDateFormat("yyyy-MM-dd").format(date));
+        model.addAttribute("startDate", new SimpleDateFormat("yyyy-MM-dd").format(date));
+        model.addAttribute("startTime", "12:00");
+        model.addAttribute("endDate", new SimpleDateFormat("yyyy-MM-dd").format(date));
+        model.addAttribute("endTime", "13:00");
         return "newevent";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String add(@RequestParam String title,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date startTime,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "HH:mm") Date startTime,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "HH:mm") Date endTime,
             @RequestParam String place,
             @RequestParam String description) {
         
-        //Validoitava JS:llä
+        Event event = eventService.createEvent(title, place, description, startDate, startTime, endDate, endTime);
         
-        Event event = new Event();
-        event.setTitle(title);
-        event.setPlace(place);
-        event.setDescription(description);
-        event.setOwner(authService.getUserLoggedIn());
-        
-        if (startTime != null) {
-            event.setStartTime(startTime);
-        } else {
-            event.setStartTime(new Date(System.currentTimeMillis()));
-        }
-        if (endTime != null) {
-            if (event.getStartTime().before(endTime)) {
-                event.setEndTime(endTime);
-            } else {
-                event.setEndTime(event.getStartTime());
-            }
-        } else {
-            event.setEndTime(event.getStartTime());
-        }
-        eventRepo.save(event);
-
         return "redirect:/events/" + event.getId();
     }
 
