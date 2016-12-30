@@ -65,14 +65,14 @@ Adminilla on kaikki *USER*in oikeudet, mutta pystyy lisäksi käyttämään admi
 **USER**
 
 - Kalenterin näyttöalueen muuttaminen:
-⋅⋅* Esivaatimus: login
-⋅⋅* Käyttäjä navigoi kalenterisivulle (login uudellenohjaa tänne)
-⋅⋅* Käyttäjä valitsee haluamansa aikavälin sivun ylälaidan valitsimilla (joillakin selaimilla 2 input laatikkoa) ja painaa "Show" -nappia
-⋅⋅* Jos käyttäjä valitsi validit päivät (alku ennen loppua) näytetään käyttäjälle valitsimen alla olevassa kalenterissa haluttu aikaväli ja siihen liittyvät tapahtumat kokonaisina viikkoina. Jos käyttäjä ei syöttänyt valideja arvoja ohjelma käyttää valmiita defaulttiarvoja.
+  * Esivaatimus: login
+  * Käyttäjä navigoi kalenterisivulle (login uudellenohjaa tänne)
+  * Käyttäjä valitsee haluamansa aikavälin sivun ylälaidan valitsimilla (joillakin selaimilla 2 input laatikkoa) ja painaa "Show" -nappia
+  * Jos käyttäjä valitsi validit päivät (alku ennen loppua) näytetään käyttäjälle valitsimen alla olevassa kalenterissa haluttu aikaväli ja siihen liittyvät tapahtumat kokonaisina viikkoina. Jos käyttäjä ei syöttänyt valideja arvoja ohjelma käyttää valmiita defaulttiarvoja.
 - Kaverien hallinta:
-⋅⋅* Käyttäjä navigoi profiilisivulle
-⋅⋅* Käyttäjä käyttää profiilisivulla "Friends" osion nappeja ja kaverinlisäysformia kavereiden lisäykseen ja poistoon
-⋅⋅* Kaverin lisäämisen jälkeen toisen käyttäjän on hyväksyttävä kaveripyyntö
+  * Käyttäjä navigoi profiilisivulle
+  * Käyttäjä käyttää profiilisivulla "Friends" osion nappeja ja kaverinlisäysformia kavereiden lisäykseen ja poistoon
+  * Kaverin lisäämisen jälkeen toisen käyttäjän on hyväksyttävä kaveripyyntö
 - Muut käyttötapaukset: Kalenterin katsominen
 
 
