@@ -103,7 +103,7 @@ public class SeleniumEventTest extends FluentTest {
         driver.findElement(By.linkText("Calendar")).click();
         assertTrue(driver.getCurrentUrl().endsWith("/calendar"));
         
-        driver.findElement(By.xpath("/html/body/div/div/div/div/div/a")).click();
+        driver.findElement(By.xpath("/html/body/div/div/div/div/div/div/a")).click();
         assertTrue(pageSource().contains("Otsikko"));
         assertTrue(pageSource().contains("Paikka"));
         assertTrue(pageSource().contains("Kuvaus"));
