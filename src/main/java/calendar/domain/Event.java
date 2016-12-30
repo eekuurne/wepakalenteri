@@ -12,6 +12,10 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+/**
+ * A basic calendar event entity.
+ * 
+ */
 @Entity
 public class Event extends AbstractPersistable<Long> {
 

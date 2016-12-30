@@ -1,4 +1,3 @@
-
 package calendar.controller;
 
 import calendar.domain.Account;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Handles friend related requests.
+ * 
  */
 @Controller
 @RequestMapping("/friends")
@@ -22,7 +22,7 @@ public class FriendController {
     private FriendService friendService;
     @Autowired
     private AccountRepository accountRepo;
-    
+
 //    @RequestMapping(method = RequestMethod.GET)
 //    public String viewFriends(Model model) {
 //        model.addAttribute("friends", friendService.findFriends());
@@ -39,14 +39,14 @@ public class FriendController {
             return "redirect:/profile?failedFriendUsername=" + username;
         }
         friendService.addFriend(otherUser);
-        
+
         return "redirect:/profile";
     }
-    
+
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
     public String removeFriend(@RequestParam("username") String username) {
         friendService.removeFriend(accountRepo.findByUsername(username));
-        
+
         return "redirect:/profile";
     }
 }

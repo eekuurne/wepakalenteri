@@ -11,6 +11,10 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * The controller that handles viewing the calendar at the main page.
+ *
+ */
 @Controller
 public class CalendarController {
 

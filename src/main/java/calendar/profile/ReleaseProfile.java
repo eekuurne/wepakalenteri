@@ -7,6 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+/**
+ * The database connection configuration for Heroku.
+ * 
+ */
 @Configuration
 @Profile("release")
 public class ReleaseProfile {

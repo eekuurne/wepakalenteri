@@ -37,7 +37,16 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 //            + " AND p.accepted = true"
 //            + " OR e.owner = :user"
 //            + " ORDER BY e.startTime ASC")
-        @Query("SELECT DISTINCT e"
+    /**
+     * Finds all events that the user is either participating in or is the
+     * owner. Compares Event.startTime to start and end.
+     * 
+     * @param user Account
+     * @param start Start time
+     * @param end End time
+     * @return Events in the time frame
+     */
+    @Query("SELECT DISTINCT e"
             + " FROM Event e, Participation p"
             + " WHERE (e.startTime BETWEEN :start AND :end)"
             + " AND ((p.event = e"
@@ -55,6 +64,15 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 //            + " AND p.accepted = true"
 //            + " OR e.owner = :user"
 //            + " ORDER BY e.endTime ASC")
+    /**
+     * Finds all events that the user is either participating in or is the
+     * owner. Compares Event.endTime to start and end.
+     * 
+     * @param user Account
+     * @param start Start time
+     * @param end End time
+     * @return Events in the time frame
+     */
     @Query("SELECT DISTINCT e"
             + " FROM Event e, Participation p"
             + " WHERE (e.endTime BETWEEN :start AND :end)"

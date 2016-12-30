@@ -18,7 +18,8 @@ import calendar.repository.ParticipationRepository;
 
 /**
  * A service that adds test data to the database in use.
- * For now works in Heroku too.
+ * For now works in Heroku too (test data is nice).
+ * Only works if the DB is empty.
  */
 @Service
 public class InitializationService {

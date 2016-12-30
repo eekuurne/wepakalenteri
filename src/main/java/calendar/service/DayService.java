@@ -41,6 +41,7 @@ public class DayService {
         List<Week> weeks = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
 
+        //Make sure that the whole days are used and get rid of millis.
         start.setHours(0);
         start.setMinutes(0);
         start.setSeconds(0);
@@ -150,6 +151,7 @@ public class DayService {
         return generateAndPopulateDays(start, end, false);
     }
 
+    //Americans and their "sunday is the first day of the week" FeelsBadMan
     private void makeStartAndEndFullWeeks(Calendar calendar, Date start, Date end) {
         calendar.setTime(start);
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
