@@ -29,23 +29,39 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             + " ORDER BY e.startTime ASC")
     public List<Event> findByParticipationAndDateBetweenXAndY(@Param("user") Account user, @Param("start") Date start, @Param("end") Date end);
 
-    @Query("SELECT e"
-            + " FROM Participation p"
-            + " INNER JOIN p.event e"
+//        @Query("SELECT DISTINCT e"
+//            + " FROM Participation p"
+//            + " INNER JOIN p.event e"
+//            + " WHERE (e.startTime BETWEEN :start AND :end)"
+//            + " AND p.account = :user"
+//            + " AND p.accepted = true"
+//            + " OR e.owner = :user"
+//            + " ORDER BY e.startTime ASC")
+        @Query("SELECT DISTINCT e"
+            + " FROM Event e, Participation p"
             + " WHERE (e.startTime BETWEEN :start AND :end)"
+            + " AND ((p.event = e"
             + " AND p.account = :user"
-            + " AND p.accepted = true"
-            + " OR e.owner = :user"
+            + " AND p.accepted = true)"
+            + " OR e.owner = :user)"
             + " ORDER BY e.startTime ASC")
     public List<Event> findByParticipationAndStartTimeBetweenXAndY(@Param("user") Account user, @Param("start") Date start, @Param("end") Date end);
 
-    @Query("SELECT e"
-            + " FROM Participation p"
-            + " INNER JOIN p.event e"
+//    @Query("SELECT DISTINCT e"
+//            + " FROM Participation p"
+//            + " INNER JOIN p.event e"
+//            + " WHERE (e.endTime BETWEEN :start AND :end)"
+//            + " AND p.account = :user"
+//            + " AND p.accepted = true"
+//            + " OR e.owner = :user"
+//            + " ORDER BY e.endTime ASC")
+    @Query("SELECT DISTINCT e"
+            + " FROM Event e, Participation p"
             + " WHERE (e.endTime BETWEEN :start AND :end)"
+            + " AND ((p.event = e"
             + " AND p.account = :user"
-            + " AND p.accepted = true"
-            + " OR e.owner = :user"
+            + " AND p.accepted = true)"
+            + " OR e.owner = :user)"
             + " ORDER BY e.endTime ASC")
     public List<Event> findByParticipationAndEndTimeBetweenXAndY(@Param("user") Account user, @Param("start") Date start, @Param("end") Date end);
 }

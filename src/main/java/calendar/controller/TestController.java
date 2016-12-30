@@ -1,7 +1,6 @@
 package calendar.controller;
 
-import calendar.domain.Account;
-import calendar.domain.Event;
+import calendar.domain.Day;
 import calendar.repository.AccountRepository;
 import calendar.repository.CommentRepository;
 import calendar.repository.EventRepository;
@@ -9,6 +8,7 @@ import calendar.repository.ParticipationRepository;
 import calendar.service.AuthenticationService;
 import calendar.service.DayService;
 import calendar.service.EventService;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
@@ -45,7 +45,8 @@ public class TestController {
     @ResponseBody
     @RequestMapping("/test")
     public String test() {
-        return "nothing here";
+        
+        return "see logs";
     }
 
 }

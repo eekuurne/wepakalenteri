@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6">
-                    <h3>Pending invites</h3>
+                    <h2>Pending invites</h2>
                     <div th:each="participation : ${pendingParticipations}">
                         <span><a th:text="${participation.event.title}" th:href="@{~/events/{id}(id=${participation.event.id})}">Event title</a></span>
                         <span th:text="${' (by: ' + participation.event.owner.username + ') on ' + #calendars.format(participation.event.startTime,'dd.MM.yyyy HH:mm') + ' - ' + #calendars.format(participation.event.endTime,'dd.MM.yyyy HH:mm')}">Event (by: owner) on startTime - endTime</span>

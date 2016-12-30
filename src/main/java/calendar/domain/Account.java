@@ -2,6 +2,7 @@
 package calendar.domain;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,8 +23,8 @@ public class Account extends AbstractPersistable<Long> {
     private String password;
     @NotNull
     private String role;
-    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
-    private List<Event> events;
+//    @OneToMany(mappedBy = "owner", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+//    private List<Event> events;
 //    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
 //    private List<Participation> participating;
 //    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
@@ -55,12 +56,12 @@ public class Account extends AbstractPersistable<Long> {
         this.role = role;
     }
 
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
+//    public List<Event> getEvents() {
+//        return events;
+//    }
+//
+//    public void setEvents(List<Event> events) {
+//        this.events = events;
+//    }
     
 }
