@@ -31,6 +31,64 @@ Lähdekoodi löytyy Githubista: https://github.com/eekuurne/wepakalenteri.
 ###Käsitekaavio
 ![Käsitekaavio](relations.png)
 
+**Tietokohde: Account**
+
+Attribuutti | Arvojoukko | Kuvaus
+--- | --- | ---
+username | merkkijono, 4-25 merkkiä | käyttäjän nimi
+password | merkkijono, 6-255 merkkiä | käyttäjän salasana
+role | merkkijono, not null | käyttäjän oikeustaso
+
+Käytäjätili, jolla sovellukseen kirjaudutaan. Käyttäjään voi liittyä useita tapahtumia, kommentteja, kavereita sekä osallistumisia.
+
+
+**Tietokohde: Comment**
+
+Attribuutti | Arvojoukko | Kuvaus
+--- | --- | ---
+event | Event-olio, not null | kommentin isäntä
+poster | Account-olio, not null | kommentin kirjoittaja
+message | merkkijono, 1-255 merkkiä | viesti
+posted | aikaleima, not null | lähetysajankohta
+
+Kommentilla on yksi käyttäjä lähettäjänä sekä yksi tapahtuma isäntänä.
+
+
+**Tietokohde: Event**
+
+Attribuutti | Arvojoukko | Kuvaus
+--- | --- | ---
+owner | Account-olio, not null | omistaja
+title | merkkijono, 1-40 merkkiä | nimi
+startTime | aikaleima, not null | alkuajankohta
+endTime | aikaleima, not null | loppuajankohta
+place | merkkijono, max 40 merkkiä, nullable | paikka
+description | merkkijono, max 40 merkkiä, nullable | kuvaus
+
+Tapahtumilla on yksi käyttäjä omistajana. Lisäksi tapahtumaan voi liittyä useita kommentteja sekä osallistumisia. Tapahtuman poiston yhteydessä myös nämä tuhotaan.
+
+
+**Tietokohde: Friendship**
+
+Attribuutti | Arvojoukko | Kuvaus
+--- | --- | ---
+requester | Account-olio, not null | kaveruuden ehdottaja
+target | Account-olio, not null | kaveruuden "kohde"
+accepted | boolean, not null | suhteen tila, true = kaveruus ja false = kaveripyyntö
+
+Ystävyyssuhteeseen liittyy kaksi käyttäjää. Toinen näistä on alkuperäisen kaveripyynnön lähettäjä ja toinen sen kohde.
+
+
+**Tietokohde: Participation**
+
+Attribuutti | Arvojoukko | Kuvaus
+--- | --- | ---
+event | Event-olio, not null | tapahtuma, johon osallistutaan
+account | Account-olio, not null | osallistuja
+accepted | boolean, not null | osallistumisen tila, true = näkyy kalenterissa ja false = kutsu
+
+Osallistumiseen liittyy yksi tapahtuma, johon osallistutaan, sekä yksi käyttäjä, joka osallistuu.
+
 
 ## Yleiskuva järjestelmästä
 
@@ -141,6 +199,6 @@ Kaikki *USER* ja/tai *ADMIN* oikeudet vaativat käyttätapaukset vaativat kirjau
 
 ## Paranneltavaa ja mietteitä
 
-
+"Tällaisesta sovelluksesta löytyy aina paranneltavaa. Varsinkin jos haluaa saada kalenteri näkymässä olevat tapahtumat nätimmän näköiseksi. Päivien täyttö DayServicessä ainakin tuntui kohtuullisen hyvältä ja nopealta ratkaisulta, kun listoja ei jouduta käydä kuin kerran läpi. Sovellus siis varmaankin pystyy käsitelemään kohtuullisen suurenkin tapahtuma määrän kohtuullisessa ajassa. Luokasta itsestään olisi varmaan saanut kyllä vilä vähän nätimmännäköisen. Adminille varmaankin olisi voinut tehdä enemmän toimintoja. Jostakin syystä springin csrf-suojaus ei tykännyt rekisteröitymissivusta, joten se otettiin paikallisesti pois päältä. Hämmentäväksi asiassa jäi se, että csrf tokeni kuitenkin lisättiin automaattisesti formiin. Spring ei kuitenkaan jostakin syystä hyväksynyt sitä, vaan valitti ettei löydä sessiota. Login silti maagisesti toimi. Varmaankin eniten googletusta aiheuttanut mysteeri tänä vuonna. Siltikään muuta ratkaisua ei löytynyt" -Sami Bäckroos (Sxvz)
 
 
