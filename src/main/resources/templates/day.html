@@ -20,6 +20,7 @@
                     <a th:href="@{~/events/{id}(id=${event.id})}" th:if="${#strings.endsWith(event.title, 'Start')}" th:id="'event-' + ${event.id} + '-start'"><span th:text="${event.title}" class="event-start">title</span></a>
                     <a th:href="@{~/events/{id}(id=${event.id})}" th:if="${#strings.endsWith(event.title, 'End')}" th:id="'event-' + ${event.id} + '-end'"><span th:text="${event.title}" class="event-end">title</span></a>
                 </div>
+                <a class="btn btn-primary day-new-event" th:href="@{/events/create/{date}(date=${#dates.format(day.date, 'yyyy-MM-dd')})}" th:id="'add-event-' + ${#dates.format(day.date, 'yyyy-MM-dd')}"><span class="glyphicon glyphicon-plus"></span> New event</a>
             </div>
         </div>
 

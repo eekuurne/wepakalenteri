@@ -51,6 +51,14 @@
   height: 60%;
 }
 
+.wad-calendar .calendar-day-content a {
+  width : 100%;
+  overflow:hidden;
+  display:inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .wad-calendar .calendar-day-footer {
   position: absolute;
   width: 100%;
@@ -96,5 +104,20 @@
   
   .start-date-wrapper, .end-date-wrapper, .show-button-wrapper {
     padding: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  
+  .wad-calendar .calendar-day-header a {
+    font-size: 0.5rem;
+  }
+
+  .wad-calendar .calendar-day-content a {
+    font-size: 0.5rem;
+  }
+
+  .wad-calendar .calendar-day {
+    height: 7rem;
   }
 }

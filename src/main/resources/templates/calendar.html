@@ -38,9 +38,14 @@
                         <a th:href="@{~/days/{date}(date=${#dates.format(day.date, 'yyyy-MM-dd')})}" th:text="${#dates.format(day.date, 'dd.MM.yyyy')}">22.12.2016</a>
                     </div>
                     <div class="calendar-day-content">
-                        <div th:each="event : ${day.events}">
-                            <a th:href="@{~/events/{id}(id=${event.id})}" th:if="${#strings.endsWith(event.title, 'Start')}" th:id="'event-' + ${event.id} + '-start'"><span th:text="${event.title}" class="event-start">title</span></a>
-                            <a th:href="@{~/events/{id}(id=${event.id})}" th:if="${#strings.endsWith(event.title, 'End')}" th:id="'event-' + ${event.id} + '-end'"><span th:text="${event.title}" class="event-end">title</span></a>
+                        <div th:each="event,iterStat : ${day.events}">
+                            <div th:if="${iterStat.index &lt; 3}">
+                                <a th:href="@{~/events/{id}(id=${event.id})}" th:if="${#strings.endsWith(event.title, 'Start')}" th:id="'event-' + ${event.id} + '-start'"><span th:text="${event.title}" class="event-start">title</span></a>
+                                <a th:href="@{~/events/{id}(id=${event.id})}" th:if="${#strings.endsWith(event.title, 'End')}" th:id="'event-' + ${event.id} + '-end'"><span th:text="${event.title}" class="event-end">title</span></a>
+                            </div>
+                            <div th:if="${iterStat.index == 3}">
+                                <a th:href="@{~/days/{date}(date=${#dates.format(day.date, 'yyyy-MM-dd')})}">...</a>
+                            </div>
                         </div>
                     </div>
                     <div class="calendar-day-footer">
