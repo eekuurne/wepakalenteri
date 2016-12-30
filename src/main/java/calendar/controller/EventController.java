@@ -58,6 +58,7 @@ public class EventController {
         model.addAttribute("comments", commentRepo.findByEventOrderByPostedAsc(event));
         model.addAttribute("participants", partService.getParticipants(event));
         model.addAttribute("pendingParticipants", partService.getPendingParticipants(event));
+        model.addAttribute("editing", false);
 
         return "event";
     }
@@ -90,32 +91,60 @@ public class EventController {
             @RequestParam String place,
             @RequestParam String description) {
         
-        Event event = eventService.createEvent(title, place, description, startDate, startTime, endDate, endTime);
+        Event event = eventService.saveEvent(new Event(), title, place, description, startDate, startTime, endDate, endTime);
         
         return "redirect:/events/" + event.getId();
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
-    public String edit(@PathVariable Long id, Model model) {
-        Event e = eventRepo.getOne(id);
+    public String edit(@PathVariable Long id, Model model, @RequestParam(required = false) String failedUsername) {
+        Event event = eventRepo.getOne(id);
 
-        if (!authService.getUserLoggedIn().equals(e.getOwner())) {
+        if (event == null || !authService.getUserLoggedIn().equals(event.getOwner())) {
             return "redirect:/";
         }
 
-        model.addAttribute("event", e);
+        if (failedUsername != null) {
+            model.addAttribute("failedUsername", failedUsername);
+            model.addAttribute("inviteError", "that user is not your friend");
+        }
+        
+        Account userLoggedIn = authService.getUserLoggedIn();
+        model.addAttribute("userLoggedIn", userLoggedIn);
+        model.addAttribute("event", event);
+        model.addAttribute("comments", commentRepo.findByEventOrderByPostedAsc(event));
+        model.addAttribute("participants", partService.getParticipants(event));
+        model.addAttribute("pendingParticipants", partService.getPendingParticipants(event));
+        model.addAttribute("editing", true);
+        model.addAttribute("eventStartDate", new SimpleDateFormat("yyyy-MM-dd").format(event.getStartTime()));
+        model.addAttribute("eventEndDate", new SimpleDateFormat("yyyy-MM-dd").format(event.getEndTime()));
+        model.addAttribute("eventStartTime", eventService.timeFromDateTime(event.getStartTime()));
+        model.addAttribute("eventEndTime", eventService.timeFromDateTime(event.getEndTime()));
 
-        return "edit_event";
+        return "event";
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
-    public String handleEdit(@Valid @RequestParam Event e) {
-        if (authService.getUserLoggedIn().equals(e.getOwner())) {
-            //Errorit?
-            eventRepo.save(e);
+    public String handleEdit(@PathVariable Long id,
+            @RequestParam String title,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "HH:mm") Date startTime,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "HH:mm") Date endTime,
+            @RequestParam String place,
+            @RequestParam String description) {
+        
+        Event event = eventRepo.findOne(id);
+        
+        if (event == null) {
+            return "redirect:/calendar";
+        }
+        
+        if (authService.getUserLoggedIn().equals(event.getOwner())) {
+            eventService.saveEvent(event, title, place, description, startDate, startTime, endDate, endTime);
         }
 
-        return "redirect:/events/" + e.getId();
+        return "redirect:/events/" + event.getId();
     }
 
     @RequestMapping(value = "/{id}/remove", method = RequestMethod.GET)

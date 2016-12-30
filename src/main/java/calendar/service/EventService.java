@@ -32,8 +32,7 @@ public class EventService {
         return false;
     }
     
-    public Event createEvent(String title, String place, String description, Date startDate, Date startTime, Date endDate, Date endTime) {
-        Event event = new Event();
+    public Event saveEvent(Event event, String title, String place, String description, Date startDate, Date startTime, Date endDate, Date endTime) {
         event.setTitle(title);
         event.setPlace(place);
         event.setDescription(description);
@@ -51,7 +50,7 @@ public class EventService {
         eventRepo.save(event);
         return event;
     }
-    
+
     private Date createEventTime(Date date, Date time) {
         if (date == null) {
             date = new Date(System.currentTimeMillis());
@@ -66,7 +65,29 @@ public class EventService {
     private Date dateTime(Date date, Date time) {
         return new Date(
                      date.getYear(), date.getMonth(), date.getDate(), 
-                     time.getHours(), time.getMinutes(), time.getSeconds()
+                     time.getHours(), time.getMinutes()
         );
+    }
+    
+    public Date dateFromDateTime(Date date) {
+        return new Date(date.getYear(), date.getMonth(), date.getDate());
+    }
+    
+    public String timeFromDateTime(Date date) {
+        int hours = date.getHours();
+        int minutes = date.getMinutes();
+        String time = "";
+        
+        if (hours < 10) {
+            time += "0";
+        }
+        time += hours + ":";
+        
+        if (minutes < 10) {
+            time += "0";
+        }
+        time += minutes;
+
+        return time;
     }
 }

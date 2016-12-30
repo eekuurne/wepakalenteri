@@ -1,0 +1,19 @@
+.wad-new-event {
+  padding: 1rem;
+}
+
+.wad-event {
+  padding: 1rem;
+}
+
+.new-event-button, .save-event-button {
+  margin-left: 0.9375rem;;
+}
+
+.cancel-edit {
+  padding-left: 0.9375rem;
+}
+
+.event-form .col-xs-12, .event-form .col-xs-6 {
+  margin-bottom: 0.9375rem;
+}
