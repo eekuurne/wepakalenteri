@@ -35,7 +35,7 @@
             <div class="week-wrapper" th:each="week : ${weeks}">
                 <div class="calendar-day" th:each="day : ${week.days}">
                     <div class="calendar-day-header">
-                        <span th:text="${#dates.format(day.date, 'dd.MM.yyyy')}">22.12.2016</span>
+                        <a th:href="@{~/days/{date}(date=${#dates.format(day.date, 'yyyy-MM-dd')})}" th:text="${#dates.format(day.date, 'dd.MM.yyyy')}">22.12.2016</a>
                     </div>
                     <div class="calendar-day-content">
                         <div th:each="event : ${day.events}">
