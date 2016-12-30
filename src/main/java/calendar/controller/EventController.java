@@ -137,7 +137,7 @@ public class EventController {
         Event event = eventRepo.findOne(id);
         
         if (event == null) {
-            return "redirect:/calendar";
+            return "redirect:/";
         }
         
         if (authService.getUserLoggedIn().equals(event.getOwner())) {

@@ -69,10 +69,6 @@ public class EventService {
         );
     }
     
-    public Date dateFromDateTime(Date date) {
-        return new Date(date.getYear(), date.getMonth(), date.getDate());
-    }
-    
     public String timeFromDateTime(Date date) {
         int hours = date.getHours();
         int minutes = date.getMinutes();
