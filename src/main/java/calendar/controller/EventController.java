@@ -9,7 +9,6 @@ import calendar.domain.Event;
 import calendar.repository.CommentRepository;
 import calendar.repository.EventRepository;
 import calendar.service.AuthenticationService;
-import calendar.service.DayService;
 import calendar.service.EventService;
 import calendar.service.ParticipationService;
 import java.text.SimpleDateFormat;
