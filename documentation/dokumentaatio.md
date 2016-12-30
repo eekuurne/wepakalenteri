@@ -28,7 +28,45 @@ Lähdekoodi löytyy Githubista: https://github.com/eekuurne/wepakalenteri.
 *Käsitekaavio*
 
 
-## Toteutetut käyttötapaukset
+## Yleiskuva järjestelmästä
+
+![Käyttötapauskaavio](use_case.png)
+*Käyttötapauskaavio*
+
+### Käyttäjäryhmät
+
+**Anonyymi käyttäjä**
+Käyttäjätunnukseton käyttäjä, joka on olemassa vain login- ja rekisteröitymissivuilla.
+
+
+**USER**
+Tavallinen kirjautunut käyttäjä, joka voi käyttää kaikkia sivuston toimintoja lukuunottamatta admintoimintoja. Rekisteröidyt tunnukset ovat kaikki tällaisia.
+
+
+**ADMIN**
+Adminilla on kaikki *USERin* oikeudet, mutta pystyy lisäksi käyttämään admintoimintoja sivulla "/admin".
+
+
+### Käyttötapauskuvaukset
+
+**Anonyymi käyttäjä**
+- Muut käyttötapaukset: login, rekisteröityminen
+
+
+**USER**
+- Kalenterin näyttöalueen muuttaminen:
+..* Esivaatimus: login
+..* Käyttäjä navigoi kalenterisivulle (login uudellenohjaa tänne)
+..* Käyttäjä valitsee haluamansa aikavälin sivun ylälaidan valitsimilla (joillakin selaimilla 2 input laatikkoa) ja painaa "Show" -nappia
+..* Jos käyttäjä valitsi validit päivät (alku ennen loppua) näytetään käyttäjälle valitsimen alla olevassa kalenterissa haluttu aikaväli ja siihen liittyvät tapahtumat kokonaisina viikkoina. Jos käyttäjä ei syöttänyt valideja arvoja ohjelma käyttää valmiita defaulttiarvoja.
+- Kaverien hallinta:
+..* Käyttäjä navigoi profiilisivulle
+..* Käyttäjä käyttää profiilisivulla "Friends" osion nappeja ja kaverinlisäysformia kavereiden lisäykseen ja poistoon
+..* Kaverin lisäämisen jälkeen toisen käyttäjän on hyväksyttävä kaveripyyntö
+- Muut käyttötapaukset: Kalenterin katsominen
+
+
+### Toteutetut käyttötapaukset
 
 - Login/logout
 - Kalenterin katsominen
@@ -36,12 +74,14 @@ Lähdekoodi löytyy Githubista: https://github.com/eekuurne/wepakalenteri.
 - Kaverien hallinta
 - Osallistumisten hallinta
 - Eventtien katselu
+- Eventtien lisääminen
+- Eventtien poistaminen ja editointi
+- Admintoiminnot (käyttäjien poistaminen)
 
 
-## Toteuttamattomat käyttötapaukset
+### Toteuttamattomat käyttötapaukset
 
-- Eventtien lisääminen, poistaminen ja editointi
-- Admintoiminnot (tmp)
+- Muut admintoiminnot
 
 
 

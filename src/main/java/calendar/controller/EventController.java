@@ -14,10 +14,8 @@ import calendar.service.EventService;
 import calendar.service.ParticipationService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.validation.Valid;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,8 +32,6 @@ public class EventController {
     private CommentRepository commentRepo;
     @Autowired
     private EventService eventService;
-    @Autowired
-    private DayService dayService;
     @Autowired
     private ParticipationService partService;
     @Autowired
