@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * The controller that handles the creation of new comments. 
+ * 
+ */
 @Controller
 @RequestMapping("/comments")
 public class CommentController {

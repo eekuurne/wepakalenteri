@@ -1,4 +1,3 @@
-
 package calendar.domain;
 
 import javax.persistence.Entity;
@@ -10,14 +9,14 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
- * Friendship can be either a friend request (if accepted == false) or
- * a friend relation between two accounts (if accepted == true).
- * The requester is the account that made the request so the friend request should
- * only be shown on the target account.
+ * Friendship can be either a friend request (if accepted == false) or a friend
+ * relation between two accounts (if accepted == true). The requester is the
+ * account that made the request so the friend request should only be shown on
+ * the target account.
  */
 @Entity
 public class Friendship extends AbstractPersistable<Long> {
-    
+
     @NotNull
     @ManyToOne
     @JoinColumn
@@ -54,6 +53,5 @@ public class Friendship extends AbstractPersistable<Long> {
     public void setAccepted(boolean accepted) {
         this.accepted = accepted;
     }
-    
-    
+
 }

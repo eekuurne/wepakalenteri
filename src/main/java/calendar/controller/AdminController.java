@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * A controller for admin related actions.
+ *
+ */
 @Controller
 @Secured("ROLE_ADMIN")
 @RequestMapping("/admin")

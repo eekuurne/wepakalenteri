@@ -1,4 +1,3 @@
-
 package calendar.domain;
 
 import java.util.Date;
@@ -14,6 +13,10 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * A basic comment entity.
+ *
+ */
 @Entity
 public class Comment extends AbstractPersistable<Long> {
 
@@ -66,6 +69,5 @@ public class Comment extends AbstractPersistable<Long> {
     public void setPosted(Date posted) {
         this.posted = posted;
     }
-    
-    
+
 }

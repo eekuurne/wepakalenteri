@@ -1,20 +1,19 @@
-
 package calendar.domain;
 
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+/**
+ * Basic user. Has information about the users role.
+ *
+ */
 @Entity
 public class Account extends AbstractPersistable<Long> {
 
-    @Column(unique=true)
+    @Column(unique = true)
     @NotNull
     @Length(min = 4, max = 25)
     private String username;
@@ -63,5 +62,4 @@ public class Account extends AbstractPersistable<Long> {
 //    public void setEvents(List<Event> events) {
 //        this.events = events;
 //    }
-    
 }

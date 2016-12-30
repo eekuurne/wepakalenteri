@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 import calendar.domain.Account;
 import calendar.repository.AccountRepository;
 
+/**
+ * A custom implementation of UserDetailsService.
+ *
+ */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 

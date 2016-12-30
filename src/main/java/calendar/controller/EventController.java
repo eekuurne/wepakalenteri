@@ -9,7 +9,6 @@ import calendar.domain.Event;
 import calendar.repository.CommentRepository;
 import calendar.repository.EventRepository;
 import calendar.service.AuthenticationService;
-import calendar.service.DayService;
 import calendar.service.EventService;
 import calendar.service.ParticipationService;
 import java.text.SimpleDateFormat;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * A controller for handling events.
+ * 
  */
 @Controller
 @RequestMapping("/events")
@@ -67,7 +67,7 @@ public class EventController {
         model.addAttribute("endTime", "13:00");
         return "newevent";
     }
-    
+
     @RequestMapping(value = "/create/{date}")
     public String createToDate(Model model,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
@@ -86,9 +86,9 @@ public class EventController {
             @RequestParam(required = false) @DateTimeFormat(pattern = "HH:mm") Date endTime,
             @RequestParam String place,
             @RequestParam String description) {
-        
+
         Event event = eventService.saveEvent(new Event(), title, place, description, startDate, startTime, endDate, endTime);
-        
+
         return "redirect:/events/" + event.getId();
     }
 
@@ -104,7 +104,7 @@ public class EventController {
             model.addAttribute("failedUsername", failedUsername);
             model.addAttribute("inviteError", "that user is not your friend");
         }
-        
+
         Account userLoggedIn = authService.getUserLoggedIn();
         model.addAttribute("userLoggedIn", userLoggedIn);
         model.addAttribute("event", event);
@@ -129,13 +129,13 @@ public class EventController {
             @RequestParam(required = false) @DateTimeFormat(pattern = "HH:mm") Date endTime,
             @RequestParam String place,
             @RequestParam String description) {
-        
+
         Event event = eventRepo.findOne(id);
-        
+
         if (event == null) {
             return "redirect:/";
         }
-        
+
         if (authService.getUserLoggedIn().equals(event.getOwner())) {
             eventService.saveEvent(event, title, place, description, startDate, startTime, endDate, endTime);
         }

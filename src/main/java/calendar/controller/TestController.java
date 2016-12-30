@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Controller for testing stuff.
+ * Does not exist in Heroku.
+ * 
  */
 @Profile("default")
 @Controller
@@ -46,7 +48,7 @@ public class TestController {
     @RequestMapping("/test")
     public String test() {
         
-        return "see logs";
+        return "nothing here";
     }
 
 }

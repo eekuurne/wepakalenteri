@@ -14,6 +14,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+/**
+ * The default security configuration.
+ * Used locally for testing purposes.
+ * 
+ */
 @Profile("default")
 @Configuration
 @EnableWebSecurity

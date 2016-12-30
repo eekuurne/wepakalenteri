@@ -1,4 +1,3 @@
-
 package calendar.domain;
 
 import javax.persistence.Entity;
@@ -9,6 +8,13 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+/**
+ * Participation is representation of a user participating (accepted == true) or
+ * having an invitation (accepted == false) to a event. The user can visit the
+ * events page in both circumstances but the event is only visible in the users
+ * calendar after the invitation has been accepted.
+ *
+ */
 @Entity
 public class Participation extends AbstractPersistable<Long> {
 
@@ -48,6 +54,5 @@ public class Participation extends AbstractPersistable<Long> {
     public void setAccepted(boolean accepted) {
         this.accepted = accepted;
     }
-    
-    
+
 }
