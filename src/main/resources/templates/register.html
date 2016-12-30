@@ -5,42 +5,44 @@
         <meta charset="UTF-8" />
         <link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
         <link rel="stylesheet" th:href="@{~/css/main.css}" href="../../css/main.css" />
+        <link rel="stylesheet" th:href="@{/css/login.css}" href="../../css/login.css" />
     </head>
     <body>
-        <div class="container-fluid" align="center">
-            <h1>Create a new account</h1>
-            <br/>
+        <div class="wad-login container">
+            <h1>Register account</h1>
             <form method="post" th:action="@{~/register}" th:object="${account}" id="register-form">
-                <div class="form-group">
+                <div class="col-xs-12 form-group">
                     <label for="register-username">Username</label>
-                    <input class="form-control" name="username" th:field="*{username}" type="text" value="${username}" style="max-width:600px" id="register-username"/>
-                    <div style="max-width:600px" align="left">
+                    <input class="form-control" name="username" th:field="*{username}" type="text" value="${username}" id="register-username"/>
+                    <div>
                         <ul>
                             <li th:if="${#fields.hasErrors('username')}" th:errors="*{username}">error</li>
                             <li th:if="${uniqueError != null}" th:text="${uniqueError}">error</li>
                         </ul>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="col-xs-12 form-group">
                     <label for="register-password">Password</label>
-                    <input class="form-control" name="password" th:field="*{password}" type="password" style="max-width:600px" id="register-password"/>
-                    <div style="max-width:600px" align="left">
+                    <input class="form-control" name="password" th:field="*{password}" type="password" id="register-password"/>
+                    <div>
                         <ul>
                             <li th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error</li>
                         </ul>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="col-xs-12 form-group">
                     <label for="register-confirm-password">Confirm your password</label>
-                    <input class="form-control" name="passwordConfirm" type="password" style="max-width:600px" id="register-confirm-password"/>
-                    <div th:if="${matchError} != null" style="max-width:600px" align="left">
+                    <input class="form-control" name="passwordConfirm" type="password" id="register-confirm-password"/>
+                    <div th:if="${matchError} != null">
                         <ul>
                             <li th:text="${matchError}">error</li>
                         </ul>
                     </div>
                 </div>
                 <input name="role" th:field="*{role}" type="hidden" value="USER"/>
-                <button type="submit" class="btn btn-primary" id="register-submit">Create</button>
+                <div class="col-xs-12 form-group">
+                    <button type="submit" class="btn btn-primary login-button" id="register-submit">Register</button>
+                </div>
             </form>
         </div>
         <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>

@@ -5,30 +5,32 @@
         <meta charset="UTF-8" />
         <link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
         <link rel="stylesheet" th:href="@{~/css/main.css}" href="../../css/main.css" />
+        <link rel="stylesheet" th:href="@{/css/login.css}" href="../../css/login.css" />
     </head>
     <body>
-        <div align="center">
+        <div class="wad-login container">
             <h1>Log in to your account</h1>
-            <br/>
-            <div class="alert alert-danger" align="left" style="max-width:600px" th:if="${error} != null">
+            <div class="alert alert-danger" th:if="${error} != null">
                 <ul>
                     <li th:text="${error}">error</li>
                 </ul>
             </div>
             <form method="post" th:action="@{~/login}" id="login-form">
-                <div class="form-group">
+                <div class="col-xs-12 form-group">
                     <label for="login-username">Username</label>
-                    <input class="form-control" name="username" th:value="${username}" type="text" style="max-width:600px" id="login-username"/>
+                    <input class="form-control" name="username" th:value="${username}" type="text" id="login-username"/>
                 </div>
-                <div class="form-group">
+                <div class="col-xs-12 form-group">
                     <label for="login-password">Password</label>
-                    <input class="form-control" name="password" type="password" style="max-width:600px" id="login-password"/>
+                    <input class="form-control" name="password" type="password" id="login-password"/>
                 </div>
-                <button type="submit" class="btn btn-primary" id="login-submit">Log in</button>
+                <div class="col-xs-12 form-group">
+                    <button type="submit" class="btn btn-primary login-button" id="login-submit">Log in</button>
+                </div>
             </form>
-            <br/>
-            <br/>
-            <p>Don't have an account? <a th:href="@{~/register}" id="login-register">Create an account.</a></p>
+            <div class="col-xs-12 form-group">
+                <p>Don't have an account? <a th:href="@{~/register}" id="login-register">Register here.</a></p>
+            </div>
         </div>
     </body>
 </html>

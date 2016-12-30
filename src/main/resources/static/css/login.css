@@ -1,0 +1,23 @@
+.wad-login {
+  padding: 3rem 20% 0 20%;
+}
+
+.wad-login h1 {
+  margin-bottom: 1rem;
+}
+
+.wad-login .login-button {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.wad-login ul {
+  margin: 0;
+}
+
+@media screen and (max-width: 767px) {
+  
+  .wad-login {
+    padding: 1rem 4% 0 4%;
+  }
+}
