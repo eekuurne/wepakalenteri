@@ -49,7 +49,7 @@ public class SeleniumEventTest extends FluentTest {
         WebElement id = driver.findElement(By.name("username"));
         WebElement pass = driver.findElement(By.name("password"));
         WebElement passConf = driver.findElement(By.name("passwordConfirm"));
-        WebElement button = driver.findElement(By.xpath("/html/body/div/form/button"));
+        WebElement button = driver.findElement(By.xpath("/html/body/div/form/div/button"));
         
         id.sendKeys("Nallekarhu");
         pass.sendKeys("Salasana");
@@ -60,7 +60,7 @@ public class SeleniumEventTest extends FluentTest {
         
         WebElement id2 = driver.findElement(By.name("username"));
         WebElement pass2 = driver.findElement(By.name("password"));
-        WebElement button2 = driver.findElement(By.xpath("/html/body/div/form/button"));
+        WebElement button2 = driver.findElement(By.xpath("/html/body/div/form/div/button"));
         
         id2.sendKeys("Nallekarhu");
         pass2.sendKeys("Salasana");
