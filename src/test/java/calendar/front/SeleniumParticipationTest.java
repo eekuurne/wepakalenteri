@@ -1,4 +1,3 @@
-
 package calendar.front;
 
 import java.util.List;
@@ -19,12 +18,11 @@ import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class SeleniumFriendTest extends FluentTest{
-    
-   public WebDriver driver = new HtmlUnitDriver();
+public class SeleniumParticipationTest extends FluentTest {
+
+    public WebDriver driver = new HtmlUnitDriver();
 
     @Override
     public WebDriver getDefaultDriver() {
@@ -34,11 +32,9 @@ public class SeleniumFriendTest extends FluentTest{
     @LocalServerPort
     private Integer port;
 
-
-
     @Test
     public void FriendTest() {
-        //create first user Kayttaja1
+        //create first user Number1
         driver.get("http://localhost:" + port + "/login");
 
         click(find("a").first());
@@ -49,7 +45,7 @@ public class SeleniumFriendTest extends FluentTest{
         WebElement passConf = driver.findElement(By.name("passwordConfirm"));
         WebElement button = driver.findElement(By.xpath("/html/body/div/form/button"));
 
-        id.sendKeys("Kayttaja1");
+        id.sendKeys("Number1");
         pass.sendKeys("Salasana");
         passConf.sendKeys("Salasana");
         button.submit();
@@ -59,16 +55,16 @@ public class SeleniumFriendTest extends FluentTest{
         WebElement id2 = driver.findElement(By.name("username"));
         WebElement pass2 = driver.findElement(By.name("password"));
         WebElement button2 = driver.findElement(By.xpath("/html/body/div/form/button"));
-        
-        id2.sendKeys("Kayttaja1");
+
+        id2.sendKeys("Number1");
         pass2.sendKeys("Salasana");
         button2.submit();
 
         assertTrue(driver.getCurrentUrl().endsWith("/calendar"));
         driver.findElement(By.linkText("Logout")).click();
         assertTrue(driver.getCurrentUrl().endsWith("/login"));
-        
-        //create second user Kayttaja2
+
+        //create second user Number2
         driver.get("http://localhost:" + port + "/login");
 
         click(find("a").first());
@@ -79,7 +75,7 @@ public class SeleniumFriendTest extends FluentTest{
         WebElement passConf3 = driver.findElement(By.name("passwordConfirm"));
         WebElement button3 = driver.findElement(By.xpath("/html/body/div/form/button"));
 
-        id3.sendKeys("Kayttaja2");
+        id3.sendKeys("Number2");
         pass3.sendKeys("Salasana");
         passConf3.sendKeys("Salasana");
         button3.submit();
@@ -89,79 +85,94 @@ public class SeleniumFriendTest extends FluentTest{
         WebElement id4 = driver.findElement(By.name("username"));
         WebElement pass4 = driver.findElement(By.name("password"));
         WebElement button4 = driver.findElement(By.xpath("/html/body/div/form/button"));
-        
-        id4.sendKeys("Kayttaja2");
+
+        id4.sendKeys("Number2");
         pass4.sendKeys("Salasana");
         button4.submit();
 
         assertTrue(driver.getCurrentUrl().endsWith("/calendar"));
         driver.findElement(By.linkText("Profile")).click();
         assertTrue(driver.getCurrentUrl().endsWith("/profile"));
-        
-        assertFalse(pageSource().contains("Kayttaja1"));
-        
-        //add a new friendrequest (Kayttaja1) from user Kayttaja2
-        WebElement friend = driver.findElement(By.name("username"));  
-        WebElement addFriendReqButton = driver.findElement(By.xpath("//input[contains(@value, 'Add')]")); 
-        
-        friend.sendKeys("Kayttaja1");
-        addFriendReqButton.submit();            
-        
-        assertTrue(pageSource().contains("Kayttaja1"));
-        
-        //remove friendrequest (target=Kayttaja1)
-        WebElement removeFriendReqButton = driver.findElement(By.xpath("//input[contains(@value, 'Cancel')]")); 
-        
-        removeFriendReqButton.submit();
-        
-        assertFalse(pageSource().contains("Kayttaja1"));
-        
-        //readd a friendrequest (Kayttaja1) from user Kayttaja2
-        WebElement friend2 = driver.findElement(By.name("username"));  
-        WebElement addFriendReqButton2 = driver.findElement(By.xpath("//input[contains(@value, 'Add')]")); 
-        
-        friend2.sendKeys("Kayttaja1");
-        addFriendReqButton2.submit();            
-        
-        assertTrue(pageSource().contains("Kayttaja1"));
-        
-        //logout as Kayttaja2 and login as Kayttaja1
+
+        assertFalse(pageSource().contains("Number1"));
+
+        //add a new friendrequest (Number1) from user Kayttaja2
+        WebElement friend = driver.findElement(By.name("username"));
+        WebElement addFriendReqButton = driver.findElement(By.xpath("//input[contains(@value, 'Add')]"));
+
+        friend.sendKeys("Number1");
+        addFriendReqButton.submit();
+
+        assertTrue(pageSource().contains("Number1"));
+
+        //logout as Number2 and login as Number1
         driver.findElement(By.linkText("Logout")).click();
         assertTrue(driver.getCurrentUrl().endsWith("/login"));
-        
+
         WebElement id5 = driver.findElement(By.name("username"));
         WebElement pass5 = driver.findElement(By.name("password"));
         WebElement button5 = driver.findElement(By.xpath("/html/body/div/form/button"));
-        
-        id5.sendKeys("Kayttaja1");
+
+        id5.sendKeys("Number1");
         pass5.sendKeys("Salasana");
         button5.submit();
 
         assertTrue(driver.getCurrentUrl().endsWith("/calendar"));
-        
-        //logged in as Kayttaja1. Go to profile-page and see friendrequest from Kayttaja2
+
+        //logged in as Number1. Go to profile-page and see friendrequest from Number2
         driver.findElement(By.linkText("Profile")).click();
         assertTrue(driver.getCurrentUrl().endsWith("/profile"));
-        
-        assertTrue(pageSource().contains("Kayttaja2"));
-        
-        //accept friendrequest from kayttaja2
-        WebElement acceptFriendReqButton = driver.findElement(By.xpath("//input[contains(@value, 'Accept')]")); 
+
+        assertTrue(pageSource().contains("Number2"));
+
+        //accept friendrequest from Number2
+        WebElement acceptFriendReqButton = driver.findElement(By.xpath("//input[contains(@value, 'Accept')]"));
         acceptFriendReqButton.submit();
-        
-        assertTrue(pageSource().contains("Kayttaja2"));
-        
-        //remove friend kayttaja2
-        WebElement removeFriendButton = driver.findElement(By.xpath("//input[contains(@value, 'Remove')]")); 
-        removeFriendButton.submit();
-        
-        assertFalse(pageSource().contains("Kayttaja2"));
-        
-        
-        
-        
-        
-        
+
+        assertTrue(pageSource().contains("Number2"));
+
+        //create new event
+        driver.findElement(By.id("navigation-new-event")).click();
+        assertTrue(driver.getCurrentUrl().endsWith("/events/create"));
+
+        WebElement title = driver.findElement(By.name("title"));
+        WebElement place = driver.findElement(By.name("place"));
+        WebElement description = driver.findElement(By.name("description"));
+
+        title.sendKeys("Kemut");
+        place.sendKeys("Teilla");
+        description.sendKeys("On varmasti hauskaa");
+
+        WebElement addEventButton = driver.findElement(By.id("new-event-add"));
+        addEventButton.submit();
+
+        //check if we are on the event's page
+        assertTrue(pageSource().contains("Kemut"));
+        assertTrue(pageSource().contains("Teilla"));
+        assertTrue(pageSource().contains("On varmasti hauskaa"));
+        assertTrue(pageSource().contains("Invite a friend to participate"));
+
+        //send user Number2 an invitation to participate
+        WebElement name = driver.findElement((By.xpath("//input[contains(@name, 'user')]")));
+        WebElement addParticipationButton = driver.findElement(By.xpath("//input[contains(@value, 'Add')]"));
+
+        name.sendKeys("Number2");
+        addParticipationButton.submit();
+
+        assertTrue(pageSource().contains("Number2"));
+
+        //delete participation invitation
+        WebElement deleteParticipationButton = driver.findElement(By.linkText("Cancel"));
+        deleteParticipationButton.click();
+        assertFalse(pageSource().contains("Number2"));
+
+        //try to send participation invitation to user (User1) who is not your friend
+        WebElement name2 = driver.findElement((By.xpath("//input[contains(@name, 'user')]")));
+        WebElement addParticipationButton2 = driver.findElement(By.xpath("//input[contains(@value, 'Add')]"));
+
+        name2.sendKeys("User1");
+        addParticipationButton2.submit();
+        assertTrue(pageSource().contains("that user is not your friend"));
 
     }
 }
