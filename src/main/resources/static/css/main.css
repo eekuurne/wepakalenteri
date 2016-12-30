@@ -12,3 +12,12 @@ body {
 textarea {
   resize: vertical;
 }
+
+h1 {
+  padding-left: 0.9375rem;
+}
+
+.content-wrapper {
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
+}
