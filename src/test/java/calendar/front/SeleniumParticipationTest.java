@@ -173,7 +173,6 @@ public class SeleniumParticipationTest extends FluentTest {
         name2.sendKeys("User1");
         addParticipationButton2.submit();
         assertTrue(pageSource().contains("that user is not your friend"));
-        assertFalse(pageSource().contains("User1"));
 
     }
 }
