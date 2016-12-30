@@ -43,7 +43,7 @@ public class SeleniumParticipationTest extends FluentTest {
         WebElement id = driver.findElement(By.name("username"));
         WebElement pass = driver.findElement(By.name("password"));
         WebElement passConf = driver.findElement(By.name("passwordConfirm"));
-        WebElement button = driver.findElement(By.xpath("/html/body/div/form/button"));
+        WebElement button = driver.findElement(By.xpath("/html/body/div/form/div/button"));
 
         id.sendKeys("Number1");
         pass.sendKeys("Salasana");
@@ -54,7 +54,7 @@ public class SeleniumParticipationTest extends FluentTest {
 
         WebElement id2 = driver.findElement(By.name("username"));
         WebElement pass2 = driver.findElement(By.name("password"));
-        WebElement button2 = driver.findElement(By.xpath("/html/body/div/form/button"));
+        WebElement button2 = driver.findElement(By.xpath("/html/body/div/form/div/button"));
 
         id2.sendKeys("Number1");
         pass2.sendKeys("Salasana");
@@ -73,7 +73,7 @@ public class SeleniumParticipationTest extends FluentTest {
         WebElement id3 = driver.findElement(By.name("username"));
         WebElement pass3 = driver.findElement(By.name("password"));
         WebElement passConf3 = driver.findElement(By.name("passwordConfirm"));
-        WebElement button3 = driver.findElement(By.xpath("/html/body/div/form/button"));
+        WebElement button3 = driver.findElement(By.xpath("/html/body/div/form/div/button"));
 
         id3.sendKeys("Number2");
         pass3.sendKeys("Salasana");
@@ -84,7 +84,7 @@ public class SeleniumParticipationTest extends FluentTest {
 
         WebElement id4 = driver.findElement(By.name("username"));
         WebElement pass4 = driver.findElement(By.name("password"));
-        WebElement button4 = driver.findElement(By.xpath("/html/body/div/form/button"));
+        WebElement button4 = driver.findElement(By.xpath("/html/body/div/form/div/button"));
 
         id4.sendKeys("Number2");
         pass4.sendKeys("Salasana");
@@ -111,7 +111,7 @@ public class SeleniumParticipationTest extends FluentTest {
 
         WebElement id5 = driver.findElement(By.name("username"));
         WebElement pass5 = driver.findElement(By.name("password"));
-        WebElement button5 = driver.findElement(By.xpath("/html/body/div/form/button"));
+        WebElement button5 = driver.findElement(By.xpath("/html/body/div/form/div/button"));
 
         id5.sendKeys("Number1");
         pass5.sendKeys("Salasana");
