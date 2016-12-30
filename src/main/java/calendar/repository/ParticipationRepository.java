@@ -14,7 +14,7 @@ public interface ParticipationRepository extends JpaRepository<Participation, Lo
     
     public Participation findByEventAndAccount(Event e, Account a);
 
-    public Participation findByAccountAndAccepted(Account a, Boolean accepted);
+    public List<Participation> findByAccountAndAccepted(Account a, Boolean accepted);
     
     /**
      * Finds users that are participating in a specific event.
