@@ -117,9 +117,9 @@ public class SeleniumEventTest extends FluentTest {
         
         assertTrue(driver.getCurrentUrl().endsWith("/edit"));
         
-        WebElement newTitle = driver.findElement(By.id("edit-event-title"));
-        WebElement newPlace = driver.findElement(By.id("edit-event-place"));
-        WebElement newDescription = driver.findElement(By.id("edit-event-description"));
+        WebElement newTitle = driver.findElement(By.id("title"));
+        WebElement newPlace = driver.findElement(By.id("place"));
+        WebElement newDescription = driver.findElement(By.id("description"));
         WebElement saveChangesButton = driver.findElement(By.id("edit-event-add"));
         
         
