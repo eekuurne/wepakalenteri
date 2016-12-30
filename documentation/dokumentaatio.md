@@ -28,14 +28,14 @@ Lähdekoodi löytyy Githubista: https://github.com/eekuurne/wepakalenteri.
 
 ## Järjestelmän tietosisältö
 
+###Käsitekaavio
 ![Käsitekaavio](relations.png)
-*Käsitekaavio*
 
 
 ## Yleiskuva järjestelmästä
 
+###Käyttötapauskaavio
 ![Käyttötapauskaavio](use_case.png)
-*Käyttötapauskaavio*
 
 
 ### Käyttäjäryhmät
