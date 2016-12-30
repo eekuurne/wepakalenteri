@@ -36,7 +36,7 @@ public class Event extends AbstractPersistable<Long> {
 //    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
 //    private List<Participation> participants;
     @NotNull
-    @Length(max = 40)
+    @Length(min =  1, max = 40)
     private String title;
     @Temporal(TemporalType.TIMESTAMP)
     //@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
