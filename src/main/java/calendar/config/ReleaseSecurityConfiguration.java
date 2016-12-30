@@ -31,7 +31,7 @@ public class ReleaseSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //Csrf token is added to the form but spring whines about session
         //not found. Because magic I guess? -> Csrf protection disabled from
-        //registration form.
+        //registration form (and login).
         http.csrf().ignoringAntMatchers("/register", "/login");
         
         http.authorizeRequests()
