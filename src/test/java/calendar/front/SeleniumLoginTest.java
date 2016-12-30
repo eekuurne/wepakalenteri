@@ -39,7 +39,7 @@ public class SeleniumLoginTest extends FluentTest {
         driver.get("http://localhost:" + port + "/login");
         WebElement id = driver.findElement(By.name("username"));
         WebElement pass = driver.findElement(By.name("password"));
-        WebElement button = driver.findElement(By.xpath("/html/body/div/form/button"));
+        WebElement button = driver.findElement(By.xpath("/html/body/div/form/div/button"));
 
         id.sendKeys("User1");
         pass.sendKeys("Password");
@@ -55,7 +55,7 @@ public class SeleniumLoginTest extends FluentTest {
         driver.get("http://localhost:" + port + "/login");
         WebElement id = driver.findElement(By.name("username"));
         WebElement pass = driver.findElement(By.name("password"));
-        WebElement button = driver.findElement(By.xpath("/html/body/div/form/button"));
+        WebElement button = driver.findElement(By.xpath("/html/body/div/form/div/button"));
 
         id.sendKeys("Miksi");
         pass.sendKeys("Enpaasesisaan");
@@ -76,7 +76,7 @@ public class SeleniumLoginTest extends FluentTest {
         WebElement id = driver.findElement(By.name("username"));
         WebElement pass = driver.findElement(By.name("password"));
         WebElement passConf = driver.findElement(By.name("passwordConfirm"));
-        WebElement button = driver.findElement(By.xpath("/html/body/div/form/button"));
+        WebElement button = driver.findElement(By.xpath("/html/body/div/form/div/button"));
 
         id.sendKeys("Hello");
         pass.sendKeys("MinaTaallaHei");
@@ -87,7 +87,7 @@ public class SeleniumLoginTest extends FluentTest {
 
         WebElement id2 = driver.findElement(By.name("username"));
         WebElement pass2 = driver.findElement(By.name("password"));
-        WebElement button2 = driver.findElement(By.xpath("/html/body/div/form/button"));
+        WebElement button2 = driver.findElement(By.xpath("/html/body/div/form/div/button"));
 
         id2.sendKeys("Hello");
         pass2.sendKeys("MinaTaallaHei");
@@ -107,7 +107,7 @@ public class SeleniumLoginTest extends FluentTest {
         WebElement id = driver.findElement(By.name("username"));
         WebElement pass = driver.findElement(By.name("password"));
         WebElement passConf = driver.findElement(By.name("passwordConfirm"));
-        WebElement button = driver.findElement(By.xpath("/html/body/div/form/button"));
+        WebElement button = driver.findElement(By.xpath("/html/body/div/form/div/button"));
 
         id.sendKeys("Juuseri");
         pass.sendKeys("Salasana");
@@ -118,7 +118,7 @@ public class SeleniumLoginTest extends FluentTest {
 
         WebElement id2 = driver.findElement(By.name("username"));
         WebElement pass2 = driver.findElement(By.name("password"));
-        WebElement button2 = driver.findElement(By.xpath("/html/body/div/form/button"));
+        WebElement button2 = driver.findElement(By.xpath("/html/body/div/form/div/button"));
 
         id2.sendKeys("Juuseri");
         pass2.sendKeys("Salasana");
