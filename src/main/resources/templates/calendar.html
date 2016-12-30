@@ -13,7 +13,7 @@
         <header th:replace="fragments/header :: header"></header>
 
         <div class="container wad-datepicker">
-            <form th:action="@{/calendar}" method="GET">
+            <form th:action="@{/calendar}" method="GET" id="calendar-datepicker-form">
                 <div class="row">
                     <div class="col-xs-12 col-sm-5 form-group start-date-wrapper">
                         <label for="startDate">Start date</label>
@@ -39,11 +39,12 @@
                     </div>
                     <div class="calendar-day-content">
                         <div th:each="event : ${day.events}">
-                            <a th:href="@{~/events/{id}(id=${event.id})}"><span th:text="${event.title}">title</span></a>
+                            <a th:href="@{~/events/{id}(id=${event.id})}" th:if="${#strings.endsWith(event.title, 'Start')}" th:id="'event-' + ${event.id} + '-start'"><span th:text="${event.title}" class="event-start">title</span></a>
+                            <a th:href="@{~/events/{id}(id=${event.id})}" th:if="${#strings.endsWith(event.title, 'End')}" th:id="'event-' + ${event.id} + '-end'"><span th:text="${event.title}" class="event-end">title</span></a>
                         </div>
                     </div>
                     <div class="calendar-day-footer">
-                        <a th:href="@{/events/create/{date}(date=${#dates.format(day.date, 'yyyy-MM-dd')})}"><span class="glyphicon glyphicon-plus"></span></a>
+                        <a th:href="@{/events/create/{date}(date=${#dates.format(day.date, 'yyyy-MM-dd')})}" th:id="'add-event-' + ${#dates.format(day.date, 'yyyy-MM-dd')}"><span class="glyphicon glyphicon-plus"></span></a>
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@
 
         <div class="wad-new-event container">
             <h1>Add new event</h1>
-            <form th:action="@{/events}" th:method="POST">
+            <form th:action="@{/events}" th:method="POST" id="new-event-form">
                 <div class="col-xs-12">
                     <label for="title">Title</label>
                     <input type="text" class="form-control" name="title" id="title" placeholder="Title"/>
@@ -43,7 +43,7 @@
                     <label for="place">Description</label>
                     <textarea rows="4" class="form-control" name="description" id="description" placeholder="Description"/>
                 </div>
-                <button type="submit" class="btn btn-default new-event-button">Add event</button>
+                <button type="submit" class="btn btn-default new-event-button" id="new-event-add">Add event</button>
             </form>
         </div>
 
